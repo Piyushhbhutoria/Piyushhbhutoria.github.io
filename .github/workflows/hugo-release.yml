@@ -5,7 +5,6 @@ on:
     branches:
       - main
       - master
-      - action-setup
 
 env:
   TOKEN: ${{ secrets.GITHUB_TOKEN }}
