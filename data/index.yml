@@ -1,0 +1,116 @@
+banner:
+  title: Piyushh's Portfolio
+
+tagline: Full-Stack Developer | Freelancer
+
+mainbutton:
+  text: Hire me
+  doc: resume.pdf # to be fixed
+
+intro:
+  - line: I am a Tech-enthusiast, Sports-person, Designer, Back-end developer.
+  - line: I like to learn new things. I like to multi-task. I work as a freelancer.
+
+experience:
+  enable: true
+  items:
+    - company: Tredence Analytics
+      position: Software Engineer
+      start: Aug 2020
+      end: Present
+    - company: Fullerton India Credit company
+      position: Business Analyst - Digital Intern
+      start: Jan 2020
+      end: Jul 2020
+    - company: Farzi Engineer
+      position: Software Developer
+      start: Jun 2019
+      end: Jul 2019
+    - company: Wittyfeed
+      position: Web Developer
+      start: May 2018
+      end: Jun 2018
+
+academics:
+  enable: true
+  items:
+    - year: 2020
+      board: Vellore Institute of Technology, Vellore
+      degree: B.Tech
+      aggregate: 8.6 CGPA
+    - year: 2016
+      board: C.B.S.E. (Sudhir Memorial Institute)
+      degree: XII (Science)
+      aggregate: 76%
+    - year: 2014
+      board: I.C.S.E (St.Aloysius day school)
+      degree: X
+      aggregate: 81%
+
+technical:
+  programming: Go, PHP, React-Native, JavaScript, HTML, CSS, Java, Python
+  design: Photoshop, Illustrator, XD
+  tools: PHPmyAdmin, GitHub, Wordpress, SAP conversation AI, Dialogflow, Google Cloud Platform.
+  databases: MySQL, MongoDB, ElasticSearch, Firebase
+
+extracurricular:
+  enable: true
+  items:
+    - name: Entrepreneurship Cell VIT
+      position: Director of Technology
+      period: 2017 - 2018
+    - name: VIT Trekking Club
+      position: Technical Head
+      period: 2017 - 2018
+    - name: Additive Manufacturing Society of India
+      position: Executive of Design
+      period: 2017 - 2018
+    - name: Microsoft Student Technical Community
+      position: Core member
+      period: 2017 - 2018
+    - name: Riviera (Cultural Fest)
+      position: Coordinator (Design)
+      period: 2018
+
+certifications:
+  enable: true
+  items:
+    - name: PHP with Wordpress
+      from: Hewlett Packard Enterprise
+    - name: "2020 Complete Python Bootcamp: from Zero to Hero"
+      from: Udemy
+    - name: "Data Warehouse Concepts: Basic to Advanced concepts"
+      from: Udemy
+    - name: "The Complete SQL Bootcamp: from Zero to Hero"
+      from: Udemy
+    - name: Programming with Google Go Specialisation
+      from: Coursera
+    - name: Architecting with Google Compute Engine
+      from: Coursera
+    - name: Introduction to Software Product Management
+      from: Coursera
+
+achievements:
+  enable: true
+  items:
+    - name: iHack
+      position: 3rd Place
+      year: 2019
+    - name: Finnovatica
+      position: Finalist
+      year: 2018
+    - name: Ideathon 2.0
+      position: Consolation Price
+      year: 2018
+    - name: VITs Got Talent
+      position: 1st Place
+      year: 2017
+    - name: National Spell Bee
+      position: State level Participation
+      year: 2013
+    - name: Roller Skates
+      position: Winner at State level
+      year: 2007 - 2016
+    - name: Go-Ju-Kai Karate - Black Belt (1st Dan)
+      position: Winner at Inter-school, State level
+      year: 2005 - 2013

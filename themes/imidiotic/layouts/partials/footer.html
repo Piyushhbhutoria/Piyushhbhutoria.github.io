@@ -1,0 +1,89 @@
+<!--================Footer Area =================-->
+<footer class="footer_area">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <div class="contact_info">
+          <div class="info_item">
+            <i class="lnr lnr-home"></i>
+            <h6>{{ .Site.Data.contact.place }}</h6>
+            <p></p>
+          </div>
+          <div class="info_item">
+            <i class="lnr lnr-phone-handset"></i>
+            <h6><a href="#">{{ .Site.Data.contact.mobile }}</a></h6>
+            <p></p>
+          </div>
+          <div class="info_item">
+            <i class="lnr lnr-envelope"></i>
+            <h6><a href="#">{{ .Site.Data.contact.email }}</a></h6>
+            <p></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="footer_top flex-column" style="float: right">
+          <div class="footer_logo">
+            <a href="#">
+              <img src="img/logo.png" alt="" />
+            </a>
+            <h4>Follow Me</h4>
+          </div>
+          <div class="footer_social">
+            {{ if .Site.Data.contact.social.linkedin }}
+            <a
+              href="https://www.linkedin.com/in/{{ .Site.Data.contact.social.linkedin }}"
+              ><i class="fa fa-linkedin"></i
+            ></a>
+            {{ end }} {{ if .Site.Data.contact.social.github }}
+            <a href="https://github.com/{{ .Site.Data.contact.social.github }}"
+              ><i class="fa fa-github"></i
+            ></a>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row footer_bottom justify-content-center">
+      <p class="col-lg-8 col-sm-12 footer-text">
+        Copyright &copy;
+        <script>
+          document.write(new Date().getFullYear());
+        </script>
+        All rights reserved by <a href="#">{{ .Site.Params.Author }}</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/stellar.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="vendors/nice-select/js/jquery.nice-select.min.js"></script>
+<script src="vendors/isotope/imagesloaded.pkgd.min.js"></script>
+<script src="vendors/isotope/isotope-min.js"></script>
+<script src="vendors/owl-carousel/owl.carousel.min.js"></script>
+<script src="js/jquery.ajaxchimp.min.js"></script>
+<script src="js/mail-script.js"></script>
+<!--gmaps Js-->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+<script src="js/gmaps.min.js"></script>
+<script src="js/theme.js"></script>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+  var Tawk_API = Tawk_API || {},
+    Tawk_LoadStart = new Date();
+  (function () {
+    var s1 = document.createElement("script"),
+      s0 = document.getElementsByTagName("script")[0];
+    s1.async = true;
+    s1.src = "https://embed.tawk.to/5d5d815877aa790be3301746/default";
+    s1.charset = "UTF-8";
+    s1.setAttribute("crossorigin", "*");
+    s0.parentNode.insertBefore(s1, s0);
+  })();
+</script>
