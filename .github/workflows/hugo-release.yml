@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - master
 
 env:
   TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -12,10 +13,9 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: 🛎 Check out master
-        uses: actions/checkout@master
+        uses: actions/checkout@main
         with:
           fetch-depth: 1
       - name: 🚀 Build and deploy
