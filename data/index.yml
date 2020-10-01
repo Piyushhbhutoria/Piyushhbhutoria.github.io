@@ -1,11 +1,11 @@
 banner:
   title: Piyushh's Portfolio
 
-tagline: Full-Stack Developer | Freelancer
+  tagline: Full-Stack Developer | Freelancer
 
 mainbutton:
   text: Hire me
-  doc: resume.pdf # to be fixed
+  doc: resume.pdf
 
 intro:
   - line: I am a Tech-enthusiast, Sports-person, Designer, Back-end developer.
@@ -48,7 +48,7 @@ academics:
       aggregate: 81%
 
 technical:
-  programming: Go, PHP, React-Native, JavaScript, HTML, CSS, Java, Python
+  programming: Go, Python, React-Native, JavaScript, HTML, CSS, PHP, Java
   design: Photoshop, Illustrator, XD
   tools: PHPmyAdmin, GitHub, Wordpress, SAP conversation AI, Dialogflow, Google Cloud Platform.
   databases: MySQL, MongoDB, ElasticSearch, Firebase
@@ -70,7 +70,7 @@ extracurricular:
       period: 2017 - 2018
     - name: Riviera (Cultural Fest)
       position: Coordinator (Design)
-      period: 2018
+      period: "2018"
 
 certifications:
   enable: true
@@ -95,19 +95,19 @@ achievements:
   items:
     - name: iHack
       position: 3rd Place
-      year: 2019
+      year: "2019"
     - name: Finnovatica
       position: Finalist
-      year: 2018
+      year: "2018"
     - name: Ideathon 2.0
       position: Consolation Price
-      year: 2018
+      year: "2018"
     - name: VITs Got Talent
       position: 1st Place
-      year: 2017
+      year: "2017"
     - name: National Spell Bee
       position: State level Participation
-      year: 2013
+      year: "2013"
     - name: Roller Skates
       position: Winner at State level
       year: 2007 - 2016
