@@ -11,12 +11,7 @@
             <h1 class="text-uppercase">I am {{ .Site.Params.Author }}</h1>
             <h5 class="text-uppercase">{{ .Site.Data.index.tagline }}</h5>
             <div class="d-flex align-items-center">
-              <a
-                class="primary_btn tr-bg"
-                href="{{ .Site.Data.index.mainbutton.doc }}"
-                download
-                ><span>{{ .Site.Data.index.mainbutton.text }}</span></a
-              >
+              <a class="primary_btn tr-bg" href="{{ .Site.Data.index.mainbutton.doc }}" download><span>{{ .Site.Data.index.mainbutton.text }}</span></a>
             </div>
           </div>
         </div>
@@ -44,8 +39,8 @@
       <div class="offset-lg-1 col-lg-5">
         <div class="main_title text-left">
           <h2>
-            let's <br />
-            Introduce about <br />
+            lets <br />
+            Introduce <br />
             myself
           </h2>
           {{ range .Site.Data.index.intro }}
@@ -61,73 +56,73 @@
 {{ if .Site.Data.index.experience.enable }}
 <!--================ Start Academics Area =================-->
 <section class="academics_area section_gap whole-wrap">
-    <div class="container">
-        <div class="main_title">
-            <h2>Experience</h2>
-            <div class="progress-table-wrap">
-                <div class="progress-table">
-                    <div class="table-head">
-                        <div class="col-lg-4 font-weight-bold">Company</div>
-                        <div class="col-lg-4 font-weight-bold">Position</div>
-                        <div class="col-lg-4 font-weight-bold">Period</div>
-                    </div>
-                    {{ range .Site.Data.index.experience.items }}
-                    <div class="table-row">
-                        <div class="col-lg-4">{{ .company }}</div>
-                        <div class="col-lg-4">{{ .position }}</div>
-                        <div class="col-lg-4">{{ .start }} - {{ .end }}</div>
-                    </div>
-                    {{ end }}
-                </div>
-            </div>
+  <div class="container">
+    <div class="main_title">
+      <h2>Experience</h2>
+      <div class="progress-table-wrap">
+        <div class="progress-table">
+          <div class="table-head">
+            <div class="col-lg-4 font-weight-bold">Company</div>
+            <div class="col-lg-4 font-weight-bold">Position</div>
+            <div class="col-lg-4 font-weight-bold">Period</div>
+          </div>
+          {{ range .Site.Data.index.experience.items }}
+          <div class="table-row">
+            <div class="col-lg-4">{{ .company }}</div>
+            <div class="col-lg-4">{{ .position }}</div>
+            <div class="col-lg-4">{{ .start }} - {{ .end }}</div>
+          </div>
+          {{ end }}
         </div>
+      </div>
     </div>
+  </div>
 </section>
 <!--================ End Academics Area =================-->
 {{ end }}
 
 <!--================ Start Tehcnical Area =================-->
 <section>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8 text-center">
-                <div class="main_title">
-                    <h2>Tehcnical Skills</h2>
-                    <p>That sets me apart :)</p>
-                </div>
-            </div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center">
+        <div class="main_title">
+          <h2>Tehcnical Skills</h2>
+          <p>{{ .Site.Data.index.technical.quote }}</p>
         </div>
-        <div class="row feature_inner">
-            <div class="col-lg-3 col-md-6">
-                <div class="feature_item">
-                    <img src="img/services/s3.png" alt="" />
-                    <h4>Programming Languages</h4>
-                    <p>{{ .Site.Data.index.technical.programming }}</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="feature_item">
-                    <img src="img/services/s2.png" alt="" />
-                    <h4>Design</h4>
-                    <p>{{ .Site.Data.index.technical.design }}</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="feature_item">
-                    <img src="img/services/s1.png" alt="" />
-                    <h4>Tools & Technologies</h4>
-                    <p>{{ .Site.Data.index.technical.tools }}</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="feature_item">
-                    <img src="img/services/s4.png" alt="" />
-                    <h4>Databases</h4>
-                    <p>{{ .Site.Data.index.technical.databases }}</p>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+    <div class="row feature_inner">
+      <div class="col-lg-3 col-md-6">
+        <div class="feature_item">
+          <img src="img/services/s3.png" alt="" />
+          <h4>Programming Languages</h4>
+          <p>{{ .Site.Data.index.technical.programming }}</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="feature_item">
+          <img src="img/services/s2.png" alt="" />
+          <h4>Design</h4>
+          <p>{{ .Site.Data.index.technical.design }}</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="feature_item">
+          <img src="img/services/s1.png" alt="" />
+          <h4>Tools & Technologies</h4>
+          <p>{{ .Site.Data.index.technical.tools }}</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="feature_item">
+          <img src="img/services/s4.png" alt="" />
+          <h4>Databases</h4>
+          <p>{{ .Site.Data.index.technical.databases }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 <!--================ End Tehcnical Area =================-->
 
@@ -137,7 +132,7 @@
   <div class="container">
     <div class="main_title">
       <h2>Certifications</h2>
-      <p>That i have completed.</p>
+      <p>{{ .Site.Data.index.certifications.quote }}</p>
       <div class="progress-table-wrap">
         <div class="progress-table">
           {{ range .Site.Data.index.certifications.items }}
@@ -152,34 +147,34 @@
   </div>
 </section>
 <!--================ End Certifications Area =================-->
-{{ end }} 
+{{ end }}
 
 {{ if .Site.Data.index.academics.enable }}
 <!--================ Start Academics Area =================-->
 <section class="academics_area section_gap whole-wrap">
-    <div class="container">
-        <div class="main_title">
-            <h2>Academics</h2>
-            <div class="progress-table-wrap">
-                <div class="progress-table">
-                    <div class="table-head">
-                        <div class="col-lg-2 font-weight-bold">Year</div>
-                        <div class="col-lg-4 font-weight-bold">Board/ Institution</div>
-                        <div class="col-lg-4 font-weight-bold">Degree/ Certificate</div>
-                        <div class="col-lg-2 font-weight-bold">Aggregate</div>
-                    </div>
-                    {{ range .Site.Data.index.academics.items }}
-                    <div class="table-row">
-                        <div class="col-lg-2">{{ .year }}</div>
-                        <div class="col-lg-4">{{ .board }}</div>
-                        <div class="col-lg-4">{{ .degree }}</div>
-                        <div class="col-lg-2">{{ .aggregate }}</div>
-                    </div>
-                    {{ end }}
-                </div>
-            </div>
+  <div class="container">
+    <div class="main_title">
+      <h2>Academics</h2>
+      <div class="progress-table-wrap">
+        <div class="progress-table">
+          <div class="table-head">
+            <div class="col-lg-2 font-weight-bold">Year</div>
+            <div class="col-lg-4 font-weight-bold">Board/ Institution</div>
+            <div class="col-lg-4 font-weight-bold">Degree/ Certificate</div>
+            <div class="col-lg-2 font-weight-bold">Aggregate</div>
+          </div>
+          {{ range .Site.Data.index.academics.items }}
+          <div class="table-row">
+            <div class="col-lg-2">{{ .year }}</div>
+            <div class="col-lg-4">{{ .board }}</div>
+            <div class="col-lg-4">{{ .degree }}</div>
+            <div class="col-lg-2">{{ .aggregate }}</div>
+          </div>
+          {{ end }}
         </div>
+      </div>
     </div>
+  </div>
 </section>
 <!--================ End Academics Area =================-->
 {{ end }}
@@ -187,23 +182,23 @@
 {{ if .Site.Data.index.extracurricular.enable }}
 <!--================ Start Extra-Curricular Area =================-->
 <section class="academics_area section_gap whole-wrap">
-    <div class="container">
-        <div class="main_title">
-            <h2>Extra-Curricular</h2>
-            <p>That i was involved in.</p>
-            <div class="progress-table-wrap">
-                <div class="progress-table">
-                    {{ range .Site.Data.index.extracurricular.items }}
-                    <div class="table-row">
-                        <div class="col-lg-6">{{ .name }}</div>
-                        <div class="col-lg-4">{{ .position }}</div>
-                        <div class="col-lg-2">{{ .period }}</div>
-                    </div>
-                    {{ end }}
-                </div>
-            </div>
+  <div class="container">
+    <div class="main_title">
+      <h2>Extra-Curricular</h2>
+      <p>{{ .Site.Data.index.extracurricular.quote }}</p>
+      <div class="progress-table-wrap">
+        <div class="progress-table">
+          {{ range .Site.Data.index.extracurricular.items }}
+          <div class="table-row">
+            <div class="col-lg-6">{{ .name }}</div>
+            <div class="col-lg-4">{{ .position }}</div>
+            <div class="col-lg-2">{{ .period }}</div>
+          </div>
+          {{ end }}
         </div>
+      </div>
     </div>
+  </div>
 </section>
 <!--================ End Extra-Curricular Area =================-->
 {{ end }}
@@ -214,7 +209,7 @@
   <div class="container">
     <div class="main_title">
       <h2>Achievements</h2>
-      <p>Till date.</p>
+      <p>{{ .Site.Data.index.achievements.quote }}</p>
       <div class="progress-table-wrap">
         <div class="progress-table">
           {{ range .Site.Data.index.achievements.items }}

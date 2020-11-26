@@ -8,10 +8,11 @@ mainbutton:
   doc: resume.pdf
 
 intro:
-  - line: I am a Tech-enthusiast, Sports-person, Designer, Back-end developer.
+  - line: I am a Tech-enthusiast, Sports-person, Designer, Full-Stack developer.
   - line: I like to learn new things. I like to multi-task. I work as a freelancer.
 
 experience:
+  quote: That i was involved in.
   enable: true
   items:
     - company: Tredence Analytics
@@ -48,31 +49,14 @@ academics:
       aggregate: 81%
 
 technical:
-  programming: Go, Python, React-Native, JavaScript, HTML, CSS, PHP, Java
-  design: Photoshop, Illustrator, XD
-  tools: PHPmyAdmin, GitHub, Wordpress, SAP conversation AI, Dialogflow, Google Cloud Platform.
-  databases: MySQL, MongoDB, ElasticSearch, Firebase
-
-extracurricular:
-  enable: true
-  items:
-    - name: Entrepreneurship Cell VIT
-      position: Director of Technology
-      period: 2017 - 2018
-    - name: VIT Trekking Club
-      position: Technical Head
-      period: 2017 - 2018
-    - name: Additive Manufacturing Society of India
-      position: Executive of Design
-      period: 2017 - 2018
-    - name: Microsoft Student Technical Community
-      position: Core member
-      period: 2017 - 2018
-    - name: Riviera (Cultural Fest)
-      position: Coordinator (Design)
-      period: "2018"
+  quote: That sets me apart :)
+  programming: Go, Python, React-Native, JavaScript, HTML, CSS, PHP, Java, pySpark
+  design: Photoshop, Illustrator, Adobe XD
+  tools: Git, Wordpress, SAP conversation AI, Dialogflow, Google Cloud Platform, Azure, Big Data, Data warehousing, Power BI
+  databases: SQL, MongoDB, ElasticSearch, Firebase
 
 certifications:
+  quote: To prove my skills.
   enable: true
   items:
     - name: PHP with Wordpress
@@ -91,6 +75,7 @@ certifications:
       from: Coursera
 
 achievements:
+  quote: Till date.
   enable: true
   items:
     - name: iHack
@@ -114,3 +99,23 @@ achievements:
     - name: Go-Ju-Kai Karate - Black Belt (1st Dan)
       position: Winner at Inter-school, State level
       year: 2005 - 2013
+
+extracurricular:
+  quote: That i was involved in.
+  enable: true
+  items:
+    - name: Entrepreneurship Cell VIT
+      position: Director of Technology
+      period: 2017 - 2018
+    - name: VIT Trekking Club
+      position: Technical Head
+      period: 2017 - 2018
+    - name: Additive Manufacturing Society of India
+      position: Executive of Design
+      period: 2017 - 2018
+    - name: Microsoft Student Technical Community
+      position: Core member
+      period: 2017 - 2018
+    - name: Riviera (Cultural Fest)
+      position: Coordinator (Design)
+      period: "2018"
