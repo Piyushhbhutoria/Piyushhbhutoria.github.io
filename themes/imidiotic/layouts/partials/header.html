@@ -18,8 +18,8 @@
             {{$page := $.Page.Permalink | relLangURL}}
             {{$aURL2 := split $aURL "/"}}
             {{$page2 := split $page "/"}}
-            {{$aURL3 := index $aURL2 1}}
-            {{$page3 := index $page2 1}}
+            {{$aURL3 := index $aURL2 2}}
+            {{$page3 := index $page2 2}}
             <li class="nav-item {{if eq $aURL3 $page3}} active {{end}}">
               <a class="nav-link" href="{{ .URL }}">{{.Name}}</a>
             </li>
