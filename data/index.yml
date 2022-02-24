@@ -21,8 +21,8 @@ experience:
   enable: true
   items:
     - company: Samudai
-      position: Co-Founder
-      start: Dec 2021
+      position: Technical Advisor
+      start: Oct 2021
       end: Present
     - company: TouchNote
       position: Backend Developer
@@ -88,7 +88,7 @@ technical:
 #       from: Coursera
 
 achievements:
-  quote: To prove my skills.
+  # quote: To prove my skills.
   enable: true
   items:
     - name: iHack
