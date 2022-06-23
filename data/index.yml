@@ -1,6 +1,7 @@
 banner:
   title: Piyushh's Portfolio
-  tagline: Full-Stack Developer | Freelancer
+  tagline: Full-Stack Developer
+  # tagline: Full-Stack Developer | Freelancer
 
 mainbutton:
   download: false
