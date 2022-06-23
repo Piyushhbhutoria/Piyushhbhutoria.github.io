@@ -30,10 +30,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3.7.3
         with:
           personal_token: ${{ secrets.GITHUB_TOKEN }}
-          # external_repository: Piyushhbhutoria/Piyushhbhutoria.github.io
           publish_dir: ./docs
           keep_files: true
-          # user_name: Piyushhbhutoria
-          # user_email: piyush.bhutoria98@gmail.com
           publish_branch: master
         #   cname: example.com

@@ -21,13 +21,13 @@ experience:
   enable: true
   items:
     - company: Samudai
-      position: Technical Advisor
+      position: Founding Team
       start: Oct 2021
       end: Present
     - company: TouchNote
       position: Backend Developer
       start: Jun 2021
-      end: Present
+      end: May 2022
     - company: Tredence Analytics
       position: Software Engineer
       start: Aug 2020
