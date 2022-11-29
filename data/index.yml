@@ -4,7 +4,7 @@ banner:
   # tagline: Full-Stack Developer | Freelancer
 
 mainbutton:
-  download: false
+  download: true
   linktext: Building
   link: https://samudai.xyz/
   doctext: Hire me
@@ -22,8 +22,8 @@ experience:
   enable: true
   items:
     - company: Samudai
-      position: Founding Team
-      start: Oct 2021
+      position: Backend Developer
+      start: Jan 2022
       end: Present
     - company: TouchNote
       position: Backend Developer
@@ -66,7 +66,7 @@ technical:
   quote: That sets me apart :)
   programming: Go, JavaScript, Python, React-Native, HTML, CSS, pySpark
   design: Photoshop, Illustrator, Adobe XD
-  tools: Git, Wordpress, SAP conversation AI, Dialogflow, Google Cloud Platform, Azure, Big Data, Data warehousing, Power BI
+  tools: Git, Docker, Kubernetes, SAP conversation AI, Dialogflow, Google Cloud Platform, Azure, Big Data, Power BI
   databases: PostgresSQL, MongoDB, ElasticSearch, Firebase
 
 # certifications:
