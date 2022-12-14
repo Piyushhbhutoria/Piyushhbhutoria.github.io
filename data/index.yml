@@ -46,21 +46,21 @@ experience:
       start: May 2018
       end: Jun 2018
 
-# academics:
-#   enable: true
-#   items:
-#     - year: 2020
-#       board: Vellore Institute of Technology, Vellore
-#       degree: B.Tech
-#       aggregate: 8.6 CGPA
-#     - year: 2016
-#       board: C.B.S.E. (Sudhir Memorial Institute)
-#       degree: XII (Science)
-#       aggregate: 76%
-#     - year: 2014
-#       board: I.C.S.E (St.Aloysius day school)
-#       degree: X
-#       aggregate: 81%
+academics:
+  enable: true
+  items:
+    - year: 2020
+      board: Vellore Institute of Technology, Vellore
+      degree: B.Tech
+      aggregate: 8.6 CGPA
+    # - year: 2016
+    #   board: C.B.S.E. (Sudhir Memorial Institute)
+    #   degree: XII (Science)
+    #   aggregate: 76%
+    # - year: 2014
+    #   board: I.C.S.E (St.Aloysius day school)
+    #   degree: X
+    #   aggregate: 81%
 
 technical:
   quote: That sets me apart :)
