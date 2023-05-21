@@ -19,13 +19,13 @@
                 href="{{ .Site.Data.index.mainbutton.link }}"><span>{{ .Site.Data.index.mainbutton.linktext }}</span></a>
               {{ end }}
               {{ if .Site.Data.index.calendlypopuptext }}
-              <a href=""onclick="Calendly.initPopupWidget({
+              <a href="" onclick="Calendly.initPopupWidget({
                 url: 'https://calendly.com/piyush-bhutoria98/30min?hide_landing_page_details=1&hide_gdpr_banner=1',
                 color: '#4458dc',
                 textColor: '#ffffff',
                 });return false;">Schedule a meet</a>
               {{ end }}
-              </div>
+            </div>
           </div>
         </div>
         <div class="col-lg-5">
@@ -75,9 +75,9 @@
       <div class="progress-table-wrap">
         <div class="progress-table">
           <div class="table-head">
-            <div class="col-lg-4 h4">Company</div>
-            <div class="col-lg-4 h4">Position</div>
-            <div class="col-lg-4 h4">Period</div>
+            <div class="col-lg-4 font-weight-bold">Company</div>
+            <div class="col-lg-4 font-weight-bold">Position</div>
+            <div class="col-lg-4 font-weight-bold">Period</div>
           </div>
           {{ range .Site.Data.index.experience.items }}
           <div class="table-row">
