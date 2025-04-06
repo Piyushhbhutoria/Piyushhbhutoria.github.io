@@ -47,18 +47,15 @@ jobs:
         id: pages
         uses: actions/configure-pages@v4
 
-      - name: Get Hugo Cache Directory
-        id: hugo-cache
-        run: |
-          echo "dir=$(hugo config | grep 'cacheDir' | cut -d' ' -f3)" >> $GITHUB_OUTPUT
-
       - name: Cache Hugo Dependencies
         uses: actions/cache@v4
         with:
-          path: ${{ steps.hugo-cache.outputs.dir }}
-          key: ${{ runner.os }}-hugo-${{ hashFiles('**/go.sum') }}
+          path: |
+            ~/.cache/hugo
+            /tmp/hugo_cache
+          key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.mod') }}
           restore-keys: |
-            ${{ runner.os }}-hugo-
+            ${{ runner.os }}-hugomod-
 
       - name: Build with Hugo
         env:
