@@ -1,6 +1,5 @@
 banner:
   title: Piyushh's Portfolio
-  # tagline: Full-Stack Developer
   tagline: Full-Stack Developer | Freelancer
 
 mainbutton:
@@ -57,14 +56,14 @@ academics:
       board: Vellore Institute of Technology, Vellore
       degree: B.Tech
       aggregate: 8.6 CGPA
-    # - year: 2016
-    #   board: C.B.S.E. (Sudhir Memorial Institute)
-    #   degree: XII (Science)
-    #   aggregate: 76%
-    # - year: 2014
-    #   board: I.C.S.E (St.Aloysius day school)
-    #   degree: X
-    #   aggregate: 81%
+    - year: 2016
+      board: C.B.S.E. (Sudhir Memorial Institute)
+      degree: XII (Science)
+      aggregate: 76%
+    - year: 2014
+      board: I.C.S.E (St.Aloysius day school)
+      degree: X
+      aggregate: 81%
 
 technical:
   quote: That sets me apart :)
@@ -73,24 +72,26 @@ technical:
   tools: Git, Docker, Kubernetes, SAP conversation AI, Dialogflow, Google Cloud Platform, Azure, Big Data, Power BI
   databases: PostgresSQL, MongoDB, Redis, ElasticSearch, Firebase
 
-# certifications:
-#   quote: To validate my skills.
-#   enable: true
-#   items:
-#     - name: PHP with Wordpress
-#       from: Hewlett Packard Enterprise
-#     - name: "2020 Complete Python Bootcamp: from Zero to Hero"
-#       from: Udemy
-#     - name: "Data Warehouse Concepts: Basic to Advanced concepts"
-#       from: Udemy
-#     - name: "The Complete SQL Bootcamp: from Zero to Hero"
-#       from: Udemy
-#     - name: Programming with Google Go Specialisation
-#       from: Coursera
-#     - name: Architecting with Google Compute Engine
-#       from: Coursera
-#     - name: Introduction to Software Product Management
-#       from: Coursera
+certifications:
+  quote: To validate my skills.
+  enable: true
+  items:
+    - name: "Github Copilot"
+      from: Github
+    - name: "2020 Complete Python Bootcamp: from Zero to Hero"
+      from: Udemy
+    - name: "Data Warehouse Concepts: Basic to Advanced concepts"
+      from: Udemy
+    - name: "The Complete SQL Bootcamp: from Zero to Hero"
+      from: Udemy
+    - name: Programming with Google Go Specialisation
+      from: Coursera
+    - name: Architecting with Google Compute Engine
+      from: Coursera
+    - name: Introduction to Software Product Management
+      from: Coursera
+    - name: PHP with Wordpress
+      from: Hewlett Packard Enterprise
 
 achievements:
   # quote: To prove my skills.
@@ -113,12 +114,13 @@ achievements:
       year: "2013"
     - name: Roller Skates
       position: Winner at State level
-      year: 2007 - 2016
+      year: "2016"
     - name: Go-Ju-Kai Karate - Black Belt (1st Dan)
       position: Winner at Inter-school, State level
-      year: 2005 - 2013
+      year: "2013"
+
 # extracurricular:
-#   quote: That i was involved in.
+#   quote: Beyond Academics
 #   enable: true
 #   items:
 #     - name: Entrepreneurship Cell VIT
