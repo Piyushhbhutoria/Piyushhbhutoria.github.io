@@ -6,8 +6,8 @@ license = "MIT"
 licenselink = "https://github.com/yourname/yourtheme/blob/master/LICENSE"
 description = ""
 homepage = "http://example.com/"
-tags = [personal, portfolio]
-features = [portfolio]
+tags = ["personal", "portfolio"]
+features = ["portfolio"]
 min_version = "0.41.0"
 
 [author]

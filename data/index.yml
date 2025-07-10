@@ -13,19 +13,26 @@ calendlypopuptext: true
 calendlypopupwidget: false
 
 intro:
-  - line: A Tech-enthusiast who loves skating, coding and problem solving. Self taught developer, always exploring new places both personally and professionally.
-  - line: I was a sportsperson all my school days and the `guy in the chair` during my college days. I've always tried to build a broad perspective on problems and solutions by exploring multiple domains like design, development and management. With that being said, I've a strong inclination towards startups and innovation, and I'm always on a look out for the next big thing.
+  - line: I'm a Senior Software Developer with a passion for building scalable backend systems that drive real business impact.
+  - line: With expertise in Ruby on Rails, Golang, and PostgreSQL, I've spent the last five years crafting solutions across procurement tech, analytics, and product-led startups that solve complex technical challenges while delivering measurable value.
+  - line: My portfolio showcases key projects that demonstrate my technical depth and leadership experience, including leading engineering teams and architecting systems that have directly improved client satisfaction and operational efficiency.
+  - line: Currently seeking new opportunities in fintech, data, or AI, I'm excited to connect with forward-thinking teams where I can continue to innovate at the intersection of technology and business outcomes.
+  - line: Feel free to explore my work and reach out to discuss how we might collaborate!
 
 experience:
   quote: That i was involved in.
   enable: true
   items:
+    - company: Easyship
+      position: Sr. Software Engineer
+      start: Jul 2025
+      end: Present
     - company: Procol
       position: Sr. Software Engineer
       start: Jan 2023
-      end: Present
+      end: Jun 2025
     - company: Samudai
-      position: Backend Developer
+      position: Software Engineer
       start: Jan 2022
       end: Jan 2023
     - company: TouchNote
@@ -72,10 +79,47 @@ technical:
   tools: Git, Docker, Kubernetes, SAP conversation AI, Dialogflow, Google Cloud Platform, Azure, Big Data, Power BI
   databases: PostgresSQL, MongoDB, Redis, ElasticSearch, Firebase
 
+projects:
+  quote: What I've built and contributed to.
+  enable: true
+  items:
+    - name: Samudai
+      description: One stop solution for DAO operations
+      technologies: React, Golang, Postgres, Redis, Mongo, Node, SIWE, safe-wallet
+      link: "#"
+      github: https://github.com/Samudai/samudai-monorepo
+      image: projects/samudai.jpeg
+    - name: Honest Box
+      description: An Anonymous Feedback Platform
+      technologies: Lovable, Cursor, Supabase
+      link: https://honesti-dad.lovable.app
+      github: https://github.com/piyushhbhutoria/honesti-dad
+      image: projects/honest-box.png
+    - name: Wish Wall
+      description: Your Digital Canvas for Every Occasion!
+      technologies: Lovable, Cursor, Supabase
+      link: https://wish-wall.lovable.app
+      github: https://github.com/piyushhbhutoria/memory-wall
+      image: projects/wish-wall.png
+    - name: House Help
+      description: Mobile App for maintaining attendance and payements of househelps
+      technologies: React Native, Cursor
+      link: "#"
+      github: https://github.com/piyushhbhutoria/house-help
+      image: projects/house-help.png
+    - name: Supertokens golang SDK
+      description: Real-time analytics dashboard for business insights
+      technologies: Open Source User Authentication
+      link: https://supertokens.com/
+      github: https://github.com/supertokens/supertokens-golang
+      image: projects/supertokens.png
+
 certifications:
   quote: To validate my skills.
   enable: true
   items:
+    - name: "Microsoft Applied Skills: Accelerate app development by using GitHub Copilot"
+      from: Microsoft
     - name: "Github Copilot"
       from: Github
     - name: "2020 Complete Python Bootcamp: from Zero to Hero"
@@ -118,7 +162,6 @@ achievements:
     - name: Go-Ju-Kai Karate - Black Belt (1st Dan)
       position: Winner at Inter-school, State level
       year: "2013"
-
 # extracurricular:
 #   quote: Beyond Academics
 #   enable: true

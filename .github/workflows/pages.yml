@@ -30,7 +30,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      HUGO_VERSION: 0.145.0
+      HUGO_VERSION: 0.148.0
     steps:
       - name: Install Hugo CLI
         run: |
@@ -45,7 +45,7 @@ jobs:
 
       - name: Setup Pages
         id: pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5
 
       - name: Cache Hugo Dependencies
         uses: actions/cache@v4
@@ -63,6 +63,7 @@ jobs:
           HUGO_ENV: production
         run: |
           hugo \
+            --environment production \
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
 

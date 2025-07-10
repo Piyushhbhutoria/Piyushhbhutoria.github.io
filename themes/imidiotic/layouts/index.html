@@ -58,7 +58,7 @@
           </h2>
           <div class="about_content">
             {{ range .Site.Data.index.intro }}
-            <p class="lead mb-3">{{ .line }}</p>
+            <p class="lead mb-2">{{ .line }}</p>
             {{ end }}
           </div>
         </div>
@@ -158,6 +158,53 @@
   </div>
 </section>
 <!--================ End Technical Area =================-->
+
+{{ if .Site.Data.index.projects.enable }}
+<!--================ Start Projects Area =================-->
+<section class="section_gap" id="projects">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center">
+        <div class="main_title" data-aos="fade-up">
+          <h2>Projects</h2>
+          <p class="lead">{{ .Site.Data.index.projects.quote }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      {{ range $index, $project := .Site.Data.index.projects.items }}
+      <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="{{ mul $index 100 }}">
+        <div class="card h-100 shadow-sm">
+          <img src="{{ $project.image }}" alt="{{ $project.name }}" class="card-img-top" />
+          <div class="d-flex justify-content-center align-items-center mt-2">
+            <div>
+              {{ if ne $project.link "#" }}
+              <a href="{{ $project.link }}" target="_blank" class="btn btn-primary btn-sm">
+                <i class="fa fa-external-link"></i> Live Demo
+              </a>
+              {{ end }}
+              {{ if ne $project.github "#" }}
+              <a href="{{ $project.github }}" target="_blank" class="btn btn-secondary btn-sm">
+                <i class="fa fa-github"></i> GitHub
+              </a>
+              {{ end }}
+            </div>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ $project.name }}</h5>
+            <p class="card-text">{{ $project.description }}</p>
+            <small class="text-muted">
+              <i class="fa fa-code"></i> {{ $project.technologies }}
+            </small>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+<!--================ End Projects Area =================-->
+{{ end }}
 
 {{ if .Site.Data.index.certifications.enable }}
 <!--================ Start Certifications Area =================-->
