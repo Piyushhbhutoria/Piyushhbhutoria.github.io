@@ -32,7 +32,7 @@ const ExperienceItem = ({
           {description.map((item, idx) => (
             <li key={idx} className="flex gap-3">
               <span className="text-accent font-bold mt-1">▸</span>
-              <span className="font-medium">{item}</span>
+              <span className="font-medium" dangerouslySetInnerHTML={{ __html: item }} />
             </li>
           ))}
         </ul>
