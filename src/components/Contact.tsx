@@ -29,7 +29,7 @@ const Contact = ({ title, socialTitle, contactItems, socialLinks, ctaEmail }: Co
         <div className="brutal-border bg-card p-8 md:p-12 brutal-shadow-lg">
           <h2 className="text-4xl md:text-5xl font-black mb-8">{title}</h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
             {contactItems.map((item, idx) => (
               <div key={idx} className="brutal-border bg-background brutal-shadow-sm hover-lift">
                 <div className={`${item.color} p-3 brutal-border border-b-4 flex items-center justify-center`}>
@@ -54,7 +54,7 @@ const Contact = ({ title, socialTitle, contactItems, socialLinks, ctaEmail }: Co
 
           <div className="space-y-6">
             <h3 className="text-2xl font-black">{socialTitle}</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {socialLinks.map((link, idx) => (
                 <a
                   key={idx}
@@ -63,7 +63,7 @@ const Contact = ({ title, socialTitle, contactItems, socialLinks, ctaEmail }: Co
                   rel="noopener noreferrer"
                   className="brutal-border bg-background brutal-shadow hover-lift"
                 >
-                  <div className={`${link.color} p-4 flex items-center justify-center gap-3`}>
+                  <div className={`${link.color} p-4 flex items-center justify-center gap-4`}>
                     {getSocialIcon(link.iconType, "h-6 w-6")}
                     <span className="font-black">{link.label}</span>
                   </div>

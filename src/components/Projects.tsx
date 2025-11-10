@@ -10,7 +10,7 @@ const Projects = ({ title, subtitle, projects }: ProjectsProps) => {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-2 sm:mb-4">{title}</h2>
           <p className="text-lg sm:text-xl mb-8 sm:mb-12 font-medium">{subtitle}</p>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10">
             {projects.map((project, idx) => (
               <div
                 key={idx}

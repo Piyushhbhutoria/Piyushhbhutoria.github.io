@@ -11,7 +11,7 @@ const SkillCard = ({ icon, title, items, color }: SkillCardProps) => {
         <h3 className="text-xl font-black">{title}</h3>
       </div>
       <div className="p-6">
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-4">
           {items.map((item, idx) => (
             <span
               key={idx}
@@ -50,7 +50,7 @@ const Skills = ({ title, iconType, skillCategories }: SkillsProps) => {
           <h2 className="text-4xl md:text-5xl font-black">{title}</h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {skillCategories.map((category, idx) => (
             <SkillCard
               key={idx}

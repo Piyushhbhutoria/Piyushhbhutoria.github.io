@@ -37,7 +37,7 @@ projects:
         url: "https://wish-wall.lovable.app/"
       - type: "github"
         url: "https://github.com/piyushhbhutoria/memory-wall"
-    color: "bg-accent"
+    color: "bg-secondary"
   - title: "House Help"
     description: "Mobile App for maintaining attendance and payments of househelps"
     tech: "React Native, Cursor"
@@ -45,7 +45,7 @@ projects:
     links:
       - type: "demo"
         url: "https://househelper.lovable.app/"
-    color: "bg-primary"
+    color: "bg-accent"
   - title: "Supertokens Golang SDK"
     description: "Open Source User Authentication - Real-time analytics dashboard for business insights"
     tech: "Golang, Open Source"
@@ -55,6 +55,6 @@ projects:
         url: "https://supertokens.com/"
       - type: "github"
         url: "https://github.com/supertokens/supertokens-golang"
-    color: "bg-secondary"
+    color: "bg-accent"
 ---
 

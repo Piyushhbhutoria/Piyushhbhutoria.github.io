@@ -46,7 +46,7 @@ experiences:
       - "Migrated codebase from Bitbucket to GitHub, implementing CI/CD with Circle CI"
       - "Developed product sense through weekly mentorship from Product Manager and contributed to roadmap development"
     techStack: "Go, Docker, Kubernetes, Postgres, Circle-CI"
-    color: "accent"
+    color: "secondary"
   - company: "Tredence Analytics"
     role: "Software Engineer"
     duration: "Aug 2020 - May 2021"
@@ -56,7 +56,7 @@ experiences:
       - "Built data pipelines to generate 5-year sales forecasts and footprint projections based on historical data"
       - "Forecasted customer footprint data for retail outlets, helping optimize resources and increase revenue"
     techStack: "Python, Azure, Spark SQL, Alteryx"
-    color: "primary"
+    color: "secondary"
   - company: "Freelancer"
     role: "Full Stack Developer"
     duration: "July 2018 - April 2021"
@@ -68,6 +68,5 @@ experiences:
       - "Migrated an A/B testing SDK from JavaScript to Go"
       - "Helped a food & beverage client rapidly develop a hybrid app using React Native"
     techStack: "Go, React-native, PHP, mySQL, Firebase"
-    color: "secondary"
+    color: "accent"
 ---
-

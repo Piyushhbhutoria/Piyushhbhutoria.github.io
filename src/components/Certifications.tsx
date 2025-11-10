@@ -8,7 +8,7 @@ const Certifications = ({ title, subtitle, certifications }: CertificationsProps
           <h2 className="text-4xl md:text-5xl font-black mb-4">{title}</h2>
           <p className="text-xl mb-8 font-medium">{subtitle}</p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {certifications.map((cert, idx) => (
               <div
                 key={idx}

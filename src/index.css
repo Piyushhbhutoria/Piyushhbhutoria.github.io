@@ -111,15 +111,15 @@ All colors MUST be HSL.
     --popover-foreground: 0 0% 100%;
 
     /* Bright Yellow Primary */
-    --primary: 48 96% 53%;
-    --primary-foreground: 0 0% 0%;
+    --primary: 48 80% 53%;
+    --primary-foreground: 0 0% 100%;
 
     /* Cyan Secondary */
-    --secondary: 189 94% 43%;
-    --secondary-foreground: 0 0% 0%;
+    --secondary: 189 80% 43%;
+    --secondary-foreground: 0 0% 100%;
 
     /* Magenta Accent */
-    --accent: 328 86% 57%;
+    --accent: 328 80% 57%;
     --accent-foreground: 0 0% 100%;
 
     --muted: 240 10% 25%;

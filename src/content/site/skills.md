@@ -9,7 +9,6 @@ skillCategories:
       - "Go"
       - "Python"
       - "JavaScript"
-      - "TypeScript"
     color: "primary"
   - iconType: "wrench"
     title: "Tools & Technologies"
@@ -21,21 +20,16 @@ skillCategories:
       - "AWS"
       - "DigitalOcean"
       - "Circle-CI"
-      - "Terraform"
+      - "GCP"
     color: "secondary"
   - iconType: "database"
     title: "Databases"
     items:
       - "PostgreSQL"
-      - "MongoDB"
       - "Redis"
+      - "Supabase"
+      - "MongoDB"
       - "ElasticSearch"
-      - "Spark SQL"
     color: "accent"
-  - iconType: "award"
-    title: "Certifications"
-    items:
-      - "GitHub Copilot by GitHub"
-    color: "primary"
 ---
 
