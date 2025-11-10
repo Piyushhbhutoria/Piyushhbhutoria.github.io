@@ -1,6 +1,6 @@
 # Piyushh's Portfolio Website
 
-A modern, responsive portfolio website built with Hugo and a custom theme featuring smooth animations and a projects showcase.
+A modern, responsive portfolio website built with Astro, React, and Tailwind CSS featuring smooth animations, dark mode support, and a comprehensive showcase of projects, experience, and achievements.
 
 ## Features
 
@@ -14,115 +14,162 @@ A modern, responsive portfolio website built with Hugo and a custom theme featur
 ### 🎨 Modern UI/UX
 
 - Clean, minimalist design
+- Dark mode support with theme switching
 - Smooth animations and hover effects
-- AOS (Animate On Scroll) integration
-- Modern typography with Inter font
-- Gradient backgrounds and shadows
+- Modern typography
+- Radix UI components for accessibility
+- Tailwind CSS for styling
 
-### 🚀 Projects Section
+### 🚀 Sections
 
-- Showcase of personal projects
-- GitHub and live demo links
-- Technology stack display
-- Responsive grid layout
-- Hover effects with project details
+- **Hero**: Introduction with CTA buttons
+- **About**: Personal background and highlights
+- **Experience**: Work history with tech stacks
+- **Projects**: Showcase with live demos and GitHub links
+- **Skills**: Categorized technical skills
+- **Certifications**: Professional certifications
+- **Achievements**: Notable accomplishments
+- **Education**: Academic background
+- **Contact**: Contact information and social links
 
 ### 🔄 Enhanced Navigation
 
 - Fixed header with scroll effects
 - Smooth scroll to sections
 - Active link highlighting
-- Scroll-to-top button
+- Theme toggle (dark/light mode)
 
-## Structure
+## Tech Stack
+
+- **Framework**: [Astro](https://astro.build/) v5.15.1
+- **UI Library**: React 19.2.0
+- **Styling**: Tailwind CSS 4.1.16
+- **Components**: Radix UI primitives
+- **Content**: Astro Content Collections (MDX)
+- **Language**: TypeScript
+- **Icons**: Lucide React
+
+## Project Structure
 
 ```
 .
-├── config.toml              # Hugo configuration
-├── data/
-│   ├── index.yml           # Main content data
-│   └── contact.yml         # Contact information
-├── themes/imidiotic/
-│   ├── layouts/
-│   │   ├── index.html      # Main page template
-│   │   └── partials/       # Reusable components
-│   └── static/
-│       ├── css/            # Compiled CSS
-│       ├── scss/           # Source SCSS files
-│       └── js/             # JavaScript files
-└── static/                 # Static assets
+├── astro.config.mjs          # Astro configuration
+├── package.json              # Dependencies and scripts
+├── tailwind.config.ts        # Tailwind CSS configuration
+├── tsconfig.json             # TypeScript configuration
+├── public/                   # Static assets
+│   ├── favicon.ico
+│   └── robots.txt
+└── src/
+    ├── components/           # React components
+    │   ├── About.tsx
+    │   ├── Achievements.tsx
+    │   ├── Certifications.tsx
+    │   ├── Contact.tsx
+    │   ├── Education.tsx
+    │   ├── Experience.tsx
+    │   ├── Footer.tsx
+    │   ├── Header.tsx
+    │   ├── Hero.tsx
+    │   ├── Index.tsx
+    │   ├── Projects.tsx
+    │   ├── Skills.tsx
+    │   ├── theme-provider.tsx
+    │   └── ui/               # Radix UI components
+    ├── content/              # Content collections
+    │   ├── config.ts         # Content collection schemas
+    │   ├── projects/         # Project images
+    │   └── site/             # MDX content files
+    │       ├── about.md
+    │       ├── achievements.md
+    │       ├── certifications.md
+    │       ├── contact.md
+    │       ├── education.md
+    │       ├── experience.md
+    │       ├── hero.md
+    │       ├── projects.md
+    │       └── skills.md
+    ├── pages/
+    │   └── index.astro       # Main page entry point
+    ├── types/
+    │   └── index.ts          # TypeScript type definitions
+    └── lib/
+        └── utils.ts          # Utility functions
 ```
 
 ## Getting Started
 
 ### Prerequisites
 
-- Hugo (v0.100+)
-- Node.js (for SCSS compilation)
-
-### Installation
-
-1. Clone the repository
-2. Install dependencies: `npm install`
-3. Run Hugo: `hugo server`
-4. Open <http://localhost:1313>
+- Node.js (v18 or higher)
+- npm or yarn
 
 ### Building for Production
 
 ```bash
-hugo --environment development --destination docs --cleanDestinationDir
+npm run build
+```
+
+The built site will be in the `dist/` directory.
+
+### Preview Production Build
+
+```bash
+npm run preview
 ```
 
 ## Customization
 
+### Updating Content
+
+Content is managed through Astro Content Collections in the `src/content/site/` directory. Each section has its own MDX file:
+
+- `hero.md` - Hero section content
+- `about.md` - About section content
+- `experience.md` - Work experience entries
+- `projects.md` - Project showcase
+- `skills.md` - Skills and technologies
+- `certifications.md` - Professional certifications
+- `achievements.md` - Achievements and awards
+- `education.md` - Educational background
+- `contact.md` - Contact information
+
 ### Adding Projects
 
-Edit `data/index.yml` and add new projects to the `projects.items` array:
+Edit `src/content/site/projects.md` and add new projects to the `projects` array:
 
 ```yaml
 projects:
-  items:
-    - name: "Project Name"
-      description: "Project description"
-      technologies: "Tech stack"
-      link: "https://live-demo.com"
-      github: "https://github.com/user/repo"
-      image: "img/projects/project.jpg"
+  - title: "Project Name"
+    description: "Project description"
+    tech: "Tech stack"
+    file: "project-image.png"  # Place image in src/content/projects/
+    links:
+      - type: "demo"
+        url: "https://live-demo.com"
+      - type: "github"
+        url: "https://github.com/user/repo"
+    color: "#hex-color"
 ```
 
 ### Modifying Theme Colors
 
-Edit `themes/imidiotic/static/scss/_theme.scss` to customize colors:
+Edit `tailwind.config.ts` to customize the color scheme and theme variables.
 
-```scss
-/* Primary brand color */
-#4458dc
+### Adding New Sections
 
-/* Secondary colors */
-#6c757d
-```
+1. Create a new component in `src/components/`
+2. Add content file in `src/content/site/`
+3. Import and add the component to `src/components/Index.tsx`
+4. Update the Header navigation if needed
 
-### Adding Sections
+## Deployment
 
-1. Add data to `data/index.yml`
-2. Create template in `themes/imidiotic/layouts/index.html`
-3. Add navigation link in `config.toml`
+This site is configured for GitHub Pages deployment. The build process outputs static files that can be deployed to any static hosting service.
 
-## Theme Features
+### GitHub Pages
 
-### Animations
-
-- Fade-in animations on scroll
-- Hover effects on cards and buttons
-- Smooth scrolling navigation
-- Loading animations
-
-### SEO Optimized
-
-- Meta tags for social sharing
-- Structured data markup
-- Optimized images
-- Fast loading times
+The site automatically deploys via GitHub Actions (see `.github/workflows/pages.yml`).
 
 ## Browser Support
 
@@ -131,19 +178,6 @@ Edit `themes/imidiotic/static/scss/_theme.scss` to customize colors:
 - Safari (latest)
 - Edge (latest)
 
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
-
 ## License
 
 This project is licensed under the MIT License.
-
-## Contact
-
-- Email: <piyush.bhutoria98@gmail.com>
-- LinkedIn: [piyushh-bhutoria](https://www.linkedin.com/in/piyushh-bhutoria)
-- GitHub: [Piyushhbhutoria](https://github.com/Piyushhbhutoria)
