@@ -1,12 +1,12 @@
 import type React from "react";
 
 // Color theme types
-export type ThemeColor = "primary" | "secondary" | "accent";
+export type ThemeColor = "bg-primary" | "bg-secondary" | "bg-accent";
 
 // Icon types
 export type SkillIconType = "code2" | "wrench" | "database" | "award";
 export type ContactIconType = "mail" | "phone" | "mappin";
-export type SocialIconType = "github" | "linkedin";
+export type SocialIconType = "github" | "linkedin" | "medium";
 export type ProjectLinkType = "demo" | "github";
 
 // Common data structures
@@ -26,6 +26,7 @@ export interface CTASection {
 }
 
 export interface SocialLinks {
+    medium: string;
     github: string;
     linkedin: string;
     email: string;
@@ -73,7 +74,6 @@ export interface Project {
     file?: string;
     imageUrl?: string;
     links: ProjectLink[];
-    color: string;
 }
 
 export interface ProjectsData {
@@ -86,7 +86,6 @@ export interface SkillCategory {
     iconType: SkillIconType;
     title: string;
     items: string[];
-    color: ThemeColor;
 }
 
 export interface SkillsData {
@@ -110,7 +109,6 @@ export interface Achievement {
     name: string;
     category: string;
     year: string;
-    color: string;
 }
 
 export interface AchievementsData {

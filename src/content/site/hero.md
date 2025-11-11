@@ -10,6 +10,7 @@ cta:
     text: "View Experience"
     href: "#experience"
 social:
+  medium: "https://medium.com/@piyushhbhutoria"
   github: "https://github.com/Piyushhbhutoria"
   linkedin: "https://linkedin.com/in/piyushh-bhutoria"
   email: "mailto:piyush.bhutoria98@gmail.com"

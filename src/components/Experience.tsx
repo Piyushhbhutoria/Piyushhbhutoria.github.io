@@ -10,11 +10,10 @@ const ExperienceItem = ({
   techStack,
   color
 }: ExperienceItemProps) => {
-  const bgColor = color === "primary" ? "bg-primary" : color === "secondary" ? "bg-secondary" : "bg-accent";
 
   return (
     <div className="brutal-border bg-card brutal-shadow hover-lift mb-8">
-      <div className={`${bgColor} p-4 brutal-border border-b-4`}>
+      <div className={`${color} p-4 brutal-border border-b-4`}>
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
           <div>
             <h3 className="text-2xl font-black">{company}</h3>
@@ -59,7 +58,7 @@ const Experience = ({ title, experiences }: ExperienceProps) => {
 
         <div className="space-y-0">
           {experiences.map((exp, idx) => (
-            <ExperienceItem key={idx} {...exp} />
+            <ExperienceItem key={idx} {...exp} color={idx === 0 ? "bg-primary" : idx === experiences.length - 1 ? "bg-accent" : "bg-secondary"} />
           ))}
         </div>
       </div>

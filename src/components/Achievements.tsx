@@ -17,7 +17,7 @@ const Achievements = ({ title, achievements }: AchievementsProps) => {
                 key={idx}
                 className="brutal-border bg-background brutal-shadow-sm hover-lift"
               >
-                <div className={`${achievement.color} p-3 brutal-border border-b-4 flex items-center justify-center`}>
+                <div className={`${idx % 3 === 0 ? "bg-primary" : idx % 3 === 1 ? "bg-secondary" : "bg-accent"} p-3 brutal-border border-b-4 flex items-center justify-center`}>
                   <span className="font-black text-2xl">{achievement.year}</span>
                 </div>
                 <div className="p-4">

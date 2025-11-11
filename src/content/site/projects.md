@@ -9,7 +9,6 @@ projects:
     links:
       - type: "demo"
         url: "https://househelper.lovable.app/"
-    color: "bg-primary"
   - title: "Samudai"
     description: "One stop solution for DAO operations"
     tech: "React, Golang, Postgres, Redis, Mongo, Node, SIWE, safe-wallet"
@@ -17,7 +16,6 @@ projects:
     links:
       - type: "github"
         url: "https://github.com/Samudai/samudai-monorepo"
-    color: "bg-primary"
   - title: "Honest Box"
     description: "An Anonymous Feedback Platform"
     tech: "Lovable, Cursor, Supabase"
@@ -27,7 +25,6 @@ projects:
         url: "https://honesti-dad.lovable.app/"
       - type: "github"
         url: "https://github.com/piyushhbhutoria/honesti-dad"
-    color: "bg-secondary"
   - title: "Wish Wall"
     description: "Your Digital Canvas for Every Occasion!"
     tech: "Lovable, Cursor, Supabase"
@@ -37,7 +34,6 @@ projects:
         url: "https://wish-wall.lovable.app/"
       - type: "github"
         url: "https://github.com/piyushhbhutoria/memory-wall"
-    color: "bg-secondary"
   - title: "Whatsapp bulk sender"
     description: "Whatsapp Client for sending bulk messages"
     tech: "Golang"
@@ -45,7 +41,6 @@ projects:
     links:
       - type: "github"
         url: "https://github.com/Piyushhbhutoria/whatsappWebAPI"
-    color: "bg-accent"
   - title: "Supertokens Golang SDK"
     description: "Open Source User Authentication - Real-time analytics dashboard for business insights"
     tech: "Golang, Open Source"
@@ -55,6 +50,5 @@ projects:
         url: "https://supertokens.com/"
       - type: "github"
         url: "https://github.com/supertokens/supertokens-golang"
-    color: "bg-accent"
 ---
 

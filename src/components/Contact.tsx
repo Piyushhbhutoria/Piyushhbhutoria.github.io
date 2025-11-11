@@ -13,12 +13,25 @@ const getContactIcon = (iconType: ContactIconType, className: string) => {
   }
 };
 
+const MediumIcon = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z" />
+  </svg>
+);
+
 const getSocialIcon = (iconType: SocialIconType, className: string) => {
   switch (iconType) {
     case "github":
       return <Github className={className} />;
     case "linkedin":
       return <Linkedin className={className} />;
+    case "medium":
+      return <MediumIcon className={className} />;
   }
 };
 
@@ -29,7 +42,8 @@ const Contact = ({ title, socialTitle, contactItems, socialLinks, ctaEmail }: Co
         <div className="brutal-border bg-card p-8 md:p-12 brutal-shadow-lg">
           <h2 className="text-4xl md:text-5xl font-black mb-8">{title}</h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+          {/* Do not show contact items for now */}
+          {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
             {contactItems.map((item, idx) => (
               <div key={idx} className="brutal-border bg-background brutal-shadow-sm hover-lift">
                 <div className={`${item.color} p-3 brutal-border border-b-4 flex items-center justify-center`}>
@@ -50,11 +64,11 @@ const Contact = ({ title, socialTitle, contactItems, socialLinks, ctaEmail }: Co
                 </div>
               </div>
             ))}
-          </div>
+          </div> */}
 
           <div className="space-y-6">
             <h3 className="text-2xl font-black">{socialTitle}</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {socialLinks.map((link, idx) => (
                 <a
                   key={idx}

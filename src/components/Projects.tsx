@@ -22,10 +22,14 @@ const Projects = ({ title, subtitle, projects }: ProjectsProps) => {
                       src={project.imageUrl}
                       alt={project.title}
                       className="w-full h-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                      width={800}
+                      height={400}
                     />
                   </div>
                 )}
-                <div className={`${project.color} p-3 sm:p-4 brutal-border border-b-4`}>
+                <div className={`${idx % 3 === 0 ? "bg-primary" : idx % 3 === 1 ? "bg-secondary" : "bg-accent"} p-3 sm:p-4 brutal-border border-b-4`}>
                   <h3 className="text-xl sm:text-2xl font-black">{project.title}</h3>
                 </div>
 

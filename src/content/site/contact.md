@@ -18,10 +18,14 @@ contactItems:
     href: null
     color: "bg-accent"
 socialLinks:
+  - iconType: "medium"
+    label: "Medium"
+    href: "https://medium.com/@piyushhbhutoria"
+    color: "bg-primary"
   - iconType: "github"
     label: "GitHub"
     href: "https://github.com/Piyushhbhutoria"
-    color: "bg-primary"
+    color: "bg-accent"
   - iconType: "linkedin"
     label: "LinkedIn"
     href: "https://linkedin.com/in/piyushh-bhutoria"

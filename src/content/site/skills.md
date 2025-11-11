@@ -9,7 +9,6 @@ skillCategories:
       - "Go"
       - "Python"
       - "JavaScript"
-    color: "primary"
   - iconType: "wrench"
     title: "Tools & Technologies"
     items:
@@ -21,7 +20,6 @@ skillCategories:
       - "DigitalOcean"
       - "Circle-CI"
       - "GCP"
-    color: "secondary"
   - iconType: "database"
     title: "Databases"
     items:
@@ -30,6 +28,5 @@ skillCategories:
       - "Supabase"
       - "MongoDB"
       - "ElasticSearch"
-    color: "accent"
 ---
 
