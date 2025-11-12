@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { getThemeColorByIndex } from "@/lib/utils";
 import type { ProjectsProps } from "@/types";
 import { ExternalLink, Github } from "lucide-react";
 
@@ -29,7 +30,7 @@ const Projects = ({ title, subtitle, projects }: ProjectsProps) => {
                     />
                   </div>
                 )}
-                <div className={`${idx % 3 === 0 ? "bg-primary" : idx % 3 === 1 ? "bg-secondary" : "bg-accent"} p-3 sm:p-4 brutal-border border-b-4`}>
+                <div className={`${getThemeColorByIndex(idx)} p-3 sm:p-4 brutal-border border-b-4`}>
                   <h3 className="text-xl sm:text-2xl font-black">{project.title}</h3>
                 </div>
 

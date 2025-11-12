@@ -1,9 +1,6 @@
+import { getThemeColorByIndex } from "@/lib/utils";
+import type { EducationProps } from "@/types";
 import { GraduationCap } from "lucide-react";
-import type { EducationProps, ThemeColor } from "@/types";
-
-const getColorClass = (color: ThemeColor) => {
-  return color === "primary" ? "bg-primary" : color === "secondary" ? "bg-secondary" : "bg-accent";
-};
 
 const Education = ({ title, education }: EducationProps) => {
   return (
@@ -18,7 +15,7 @@ const Education = ({ title, education }: EducationProps) => {
 
         {education.map((edu, idx) => (
           <div key={idx} className="brutal-border bg-card brutal-shadow-lg hover-lift mb-6">
-            <div className={`${getColorClass(edu.color)} p-6 brutal-border border-b-4`}>
+            <div className={`${getThemeColorByIndex(idx)} p-6 brutal-border border-b-4`}>
               <h3 className="text-2xl font-black">{edu.institution}</h3>
               <p className="text-lg font-bold mt-1">{edu.location}</p>
             </div>
@@ -28,9 +25,11 @@ const Education = ({ title, education }: EducationProps) => {
                   <p className="text-xl font-bold">{edu.degree}</p>
                   <p className="font-medium text-muted-foreground">{edu.duration}</p>
                 </div>
-                <div className="brutal-border bg-accent px-6 py-3 brutal-shadow-sm">
-                  <p className="text-2xl font-black">{edu.cgpa}</p>
-                </div>
+                {edu.cgpa && (
+                  <div className={`${getThemeColorByIndex(idx, 2)} brutal-border px-6 py-3 brutal-shadow-sm`}>
+                    <p className="text-2xl font-black">{edu.cgpa}</p>
+                  </div>
+                )}
               </div>
             </div>
           </div>

@@ -1,3 +1,4 @@
+import { getThemeColorByIndex } from "@/lib/utils";
 import type { SkillCardProps, SkillIconType, SkillsProps } from "@/types";
 import { Award, Code2, Database, Wrench } from "lucide-react";
 
@@ -55,7 +56,7 @@ const Skills = ({ title, iconType, skillCategories }: SkillsProps) => {
               icon={getIcon(category.iconType, "h-6 w-6")}
               title={category.title}
               items={category.items}
-              color={idx % 3 === 0 ? "bg-primary" : idx % 3 === 1 ? "bg-secondary" : "bg-accent"}
+              color={getThemeColorByIndex(idx)}
             />
           ))}
         </div>

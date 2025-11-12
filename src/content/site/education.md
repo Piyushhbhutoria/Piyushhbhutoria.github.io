@@ -5,7 +5,6 @@ education:
     location: "Vellore, India"
     degree: "Bachelor of Technology (B.Tech)"
     duration: "2016 - 2020"
-    cgpa: "8.6 CGPA"
-    color: "secondary"
+    # cgpa: "8.6 CGPA"
 ---
 
