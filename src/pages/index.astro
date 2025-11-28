@@ -14,10 +14,15 @@ import type {
     SkillsData,
 } from "@/types";
 import { getEntry } from "astro:content";
+import { getImage } from "astro:assets";
 
-const projectImages = import.meta.glob("../content/projects/*.{png,jpeg,jpg}", {
-    eager: true,
-}) as Record<string, { default: { src: string } }>;
+// Import all project images
+import honestBox from "@/assets/projects/honest-box.png";
+import houseHelp from "@/assets/projects/house-help.png";
+import samudai from "@/assets/projects/samudai.jpeg";
+import supertokens from "@/assets/projects/supertokens.png";
+import whatsappWebApi from "@/assets/projects/whatsapp-web-api.png";
+import wishWall from "@/assets/projects/wish-wall.png";
 
 const heroEntry = await getEntry("site", "hero");
 const heroData = heroEntry.data as unknown as HeroData;
@@ -28,26 +33,33 @@ const experienceData = experienceEntry.data as unknown as ExperienceData;
 const projectsEntry = await getEntry("site", "projects");
 const projectsRawData = projectsEntry.data as unknown as ProjectsData;
 
-const getImageUrl = (filename: string): string | undefined => {
-    const normalizedFilename = filename.toLowerCase();
-    for (const [path, module] of Object.entries(projectImages)) {
-        const pathFilename = path.split("/").pop()?.toLowerCase();
-        if (pathFilename === normalizedFilename) {
-            const img = module?.default;
-            if (typeof img === "string") return img;
-            if (img && typeof img === "object" && "src" in img) {
-                return img.src as string;
-            }
-        }
-    }
-    return undefined;
+// Map filenames to imported images
+const imageMap: Record<string, any> = {
+    "honest-box.png": honestBox,
+    "house-help.png": houseHelp,
+    "samudai.jpeg": samudai,
+    "supertokens.png": supertokens,
+    "whatsapp-web-api.png": whatsappWebApi,
+    "wish-wall.png": wishWall,
 };
+
+// Optimize images and get URLs
+const optimizedImages: Record<string, string> = {};
+for (const [filename, image] of Object.entries(imageMap)) {
+    const optimized = await getImage({
+        src: image,
+        width: 800,
+        height: 400,
+        format: "webp",
+    });
+    optimizedImages[filename] = optimized.src;
+}
 
 const projectsData: ProjectsData = {
     ...projectsRawData,
     projects: projectsRawData.projects.map((project) => ({
         ...project,
-        imageUrl: project.file ? getImageUrl(project.file) : undefined,
+        imageUrl: project.file ? optimizedImages[project.file] : undefined,
     })) as Project[],
 };
 const skillsEntry = await getEntry("site", "skills");
@@ -152,7 +164,7 @@ const seoData = {
 
         <!-- Google Analytics -->
         {
-            import.meta.env.PUBLIC_GA_ID && (
+            (
                 <>
                     <script
                         async
@@ -178,14 +190,12 @@ const seoData = {
             import("web-vitals").then(
                 ({ onCLS, onFCP, onLCP, onTTFB, onINP }) => {
                     function sendToAnalytics({ name, delta, id, value }) {
-                        if (import.meta.env.DEV) {
-                            console.log("Web Vital:", {
-                                name,
-                                delta,
-                                id,
-                                value,
-                            });
-                        }
+                        console.log("Web Vital:", {
+                            name,
+                            delta,
+                            id,
+                            value,
+                        });
                         if (
                             typeof window !== "undefined" &&
                             typeof (window as any).gtag !== "undefined"

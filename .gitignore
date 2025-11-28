@@ -26,3 +26,5 @@ pnpm-debug.log*
 .beads/
 .cursor/
 .vscode/
+.cursorignore
+WARP.md

@@ -1,0 +1,22 @@
+{
+  "targets": [
+    "warp",
+    "cursor"
+  ],
+  "features": [
+    "rules",
+    "ignore",
+    "mcp",
+    "commands",
+    "subagents"
+  ],
+  "baseDirs": [
+    "."
+  ],
+  "delete": true,
+  "verbose": false,
+  "global": false,
+  "simulatedCommands": true,
+  "simulatedSubagents": false,
+  "modularMcp": true
+}
