@@ -8,7 +8,17 @@ const App = ({ heroData, aboutData, experienceData, projectsData, skillsData, ce
   <ThemeProvider defaultTheme="dark" storageKey="portfolio-theme">
     <TooltipProvider>
       <Toaster />
-      <Index heroData={heroData} aboutData={aboutData} experienceData={experienceData} projectsData={projectsData} skillsData={skillsData} certificationsData={certificationsData} achievementsData={achievementsData} educationData={educationData} contactData={contactData} />
+      <Index
+        heroData={heroData}
+        aboutData={aboutData}
+        experienceData={experienceData}
+        projectsData={projectsData}
+        skillsData={skillsData}
+        certificationsData={certificationsData}
+        achievementsData={achievementsData}
+        educationData={educationData}
+        contactData={contactData}
+      />
     </TooltipProvider>
   </ThemeProvider>
 );

@@ -1,5 +1,5 @@
 import About from "@/components/About";
-import Achievements from "@/components/Achievements";
+// import Achievements from "@/components/Achievements";
 import Certifications from "@/components/Certifications";
 import Contact from "@/components/Contact";
 import Education from "@/components/Education";
@@ -24,7 +24,7 @@ const Index = ({ heroData, aboutData, experienceData, projectsData, skillsData, 
                 <Projects {...projectsData} />
                 <Skills {...skillsData} />
                 <Certifications {...certificationsData} />
-                <Achievements {...achievementsData} />
+                {/* <Achievements {...achievementsData} /> */}
                 <Education {...educationData} />
                 <Contact {...contactData} />
             </main>
