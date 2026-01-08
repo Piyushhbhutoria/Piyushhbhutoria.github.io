@@ -163,27 +163,20 @@ const seoData = {
         />
 
         <!-- Google Analytics -->
-        {
-            (
-                <>
-                    <script
-                        async
-                        src={`https://www.googletagmanager.com/gtag/js?id=G-0QFYWC0TK8`}
-                    />
-                    <script
-                        is:inline
-                        set:html={`
-                        window.dataLayer = window.dataLayer || [];
+        <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=G-0QFYWC0TK8`}
+        ></script>
+        <script
+            is:inline
+            set:html={`window.dataLayer = window.dataLayer || [];
                         function gtag(){dataLayer.push(arguments);}
                         gtag('js', new Date());
                         gtag('config', 'G-0QFYWC0TK8', {
                             page_path: window.location.pathname,
                         });
                     `}
-                    />
-                </>
-            )
-        }
+        />
 
         <!-- Core Web Vitals Monitoring -->
         <script>
@@ -218,6 +211,10 @@ const seoData = {
                 },
             );
         </script>
+
+        <script
+            src="https://www.noupe.com/embed/0198411c6cdb7a0c91e7e4006826dd6241a6.js"
+        ></script>
     </head>
     <body>
         <App
