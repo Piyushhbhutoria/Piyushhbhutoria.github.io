@@ -1,7 +1,7 @@
 ---
-title: "Senior Software Developer"
+title: "IT Consulting | Freelancing"
 name: "Piyushh Bhutoria"
-description: "Backend Engineering Expert specializing in Ruby on Rails, Go, and Cloud Architecture. Led teams at Procol, built microservices from scratch, and served 7+ freelance clients."
+description: "IT Consulting & Digital Transformation Agency | Data Analytics Experts | Freelancing"
 cta:
   primary:
     text: "Get In Touch"
