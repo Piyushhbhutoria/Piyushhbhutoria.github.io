@@ -8,6 +8,7 @@ import type {
     ContactData,
     EducationData,
     ExperienceData,
+    OpenSourceProjectsData,
     HeroData,
     Project,
     ProjectsData,
@@ -25,6 +26,10 @@ import whatsappWebApi from "@/assets/projects/whatsapp-web-api.png";
 import wishWall from "@/assets/projects/wish-wall.png";
 import pdfTool from "@/assets/projects/pdf-tool.png";
 import retroBoard from "@/assets/projects/retro-board.png";
+import memorywall from "@/assets/projects/memorywall.png";
+import lovelink from "@/assets/projects/lovelink.png";
+import rulesync from "@/assets/projects/rulesync.png";
+import vwoGoSdk from "@/assets/projects/vwo-go-sdk.png";
 
 const heroEntry = await getEntry("site", "hero");
 const heroData = heroEntry.data as unknown as HeroData;
@@ -34,6 +39,9 @@ const experienceEntry = await getEntry("site", "experience");
 const experienceData = experienceEntry.data as unknown as ExperienceData;
 const projectsEntry = await getEntry("site", "projects");
 const projectsRawData = projectsEntry.data as unknown as ProjectsData;
+const openSourceProjectsEntry = await getEntry("site", "opensource-projects");
+const openSourceProjectsRawData =
+    openSourceProjectsEntry.data as unknown as OpenSourceProjectsData;
 
 // Map filenames to imported images
 const imageMap: Record<string, any> = {
@@ -45,6 +53,10 @@ const imageMap: Record<string, any> = {
     "wish-wall.png": wishWall,
     "pdf-tool.png": pdfTool,
     "retro-board.png": retroBoard,
+    "memorywall.png": memorywall,
+    "lovelink.png": lovelink,
+    "rulesync.png": rulesync,
+    "vwo-go-sdk.png": vwoGoSdk,
 };
 
 // Optimize images and get URLs
@@ -65,6 +77,16 @@ const projectsData: ProjectsData = {
         ...project,
         imageUrl: project.file ? optimizedImages[project.file] : undefined,
     })) as Project[],
+};
+
+const openSourceProjectsData: OpenSourceProjectsData = {
+    ...openSourceProjectsRawData,
+    openSourceProjects: openSourceProjectsRawData.openSourceProjects.map(
+        (project) => ({
+            ...project,
+            imageUrl: project.file ? optimizedImages[project.file] : undefined,
+        }),
+    ) as Project[],
 };
 const skillsEntry = await getEntry("site", "skills");
 const skillsData = skillsEntry.data as unknown as SkillsData;
@@ -261,6 +283,7 @@ const seoData = {
             aboutData={aboutData}
             experienceData={experienceData}
             projectsData={projectsData}
+            openSourceProjectsData={openSourceProjectsData}
             skillsData={skillsData}
             certificationsData={certificationsData}
             achievementsData={achievementsData}

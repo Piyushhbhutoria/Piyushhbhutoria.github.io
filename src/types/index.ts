@@ -82,6 +82,12 @@ export interface ProjectsData {
     projects: Project[];
 }
 
+export interface OpenSourceProjectsData {
+    title: string;
+    subtitle: string;
+    openSourceProjects: Project[];
+}
+
 export interface SkillCategory {
     iconType: SkillIconType;
     title: string;
@@ -179,6 +185,7 @@ export interface IndexProps {
     aboutData: AboutData;
     experienceData: ExperienceData;
     projectsData: ProjectsData;
+    openSourceProjectsData: OpenSourceProjectsData;
     skillsData: SkillsData;
     certificationsData: CertificationsData;
     achievementsData: AchievementsData;

@@ -48,13 +48,6 @@ projects:
     links:
       - type: "github"
         url: "https://github.com/Piyushhbhutoria/whatsappWebAPI"
-  - title: "Samudai"
-    description: "One stop solution for DAO operations"
-    tech: "React, Golang, Postgres, Redis, Mongo, Node, SIWE, safe-wallet"
-    file: "samudai.jpeg"
-    links:
-      - type: "github"
-        url: "https://github.com/Samudai/samudai-monorepo"
   - title: "PDF tools"
     description: "PDF tools for merging, splitting, and extracting pages"
     tech: "Vite, React, Tailwind CSS, pdf-lib"
@@ -73,14 +66,5 @@ projects:
         url: "https://retro-chronicle.lovable.app"
       - type: "github"
         url: "https://github.com/Piyushhbhutoria/retro-chronicle"
-  - title: "Supertokens Golang SDK"
-    description: "Open Source User Authentication - Real-time analytics dashboard for business insights"
-    tech: "Golang, Open Source"
-    file: "supertokens.png"
-    links:
-      - type: "demo"
-        url: "https://supertokens.com/"
-      - type: "github"
-        url: "https://github.com/supertokens/supertokens-golang"
 ---
 

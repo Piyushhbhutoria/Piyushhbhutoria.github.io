@@ -12,8 +12,9 @@ const Header = () => {
 
   const navItems = [
     { label: "About", href: "#about", id: "about" },
-    { label: "Experience", href: "#experience", id: "experience" },
     { label: "Projects", href: "#projects", id: "projects" },
+    { label: "Open Source Projects", href: "#open-source-projects", id: "open-source-projects" },
+    { label: "Experience", href: "#experience", id: "experience" },
     { label: "Skills", href: "#skills", id: "skills" },
     { label: "Contact", href: "#contact", id: "contact" }
   ];
