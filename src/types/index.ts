@@ -6,7 +6,7 @@ export type ThemeColor = "bg-primary" | "bg-secondary" | "bg-accent";
 // Icon types
 export type SkillIconType = "code2" | "wrench" | "database" | "award";
 export type ContactIconType = "mail" | "phone" | "mappin";
-export type SocialIconType = "github" | "linkedin" | "medium";
+export type SocialIconType = "github" | "linkedin" | "blog";
 export type ProjectLinkType = "demo" | "github";
 
 // Common data structures
@@ -26,7 +26,7 @@ export interface CTASection {
 }
 
 export interface SocialLinks {
-    medium: string;
+    blog: string;
     github: string;
     linkedin: string;
     email: string;

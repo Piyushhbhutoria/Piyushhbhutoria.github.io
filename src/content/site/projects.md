@@ -2,6 +2,20 @@
 title: "Projects"
 subtitle: "What I've built and contributed to."
 projects:
+  - title: "Lovelink"
+    description: "Create Your Valentine Website | Will You Be My Valentine?"
+    tech: "Lovable, Supabase"
+    file: "lovelink.png"
+    links:
+      - type: "demo"
+        url: "https://lovelink.merchandice.in/"
+  - title: "Memorywall"
+    description: "A fun retro minimal photobooth web app. Strike a pose, snap 4 photos, and create a collage!"
+    tech: "Lovable, Supabase"
+    file: "memorywall.png"
+    links:
+      - type: "demo"
+        url: "https://memorywall.merchandice.in/"
   - title: "Househelp"
     description: "Mobile App for maintaining attendance and payments of househelps"
     tech: "React Native, Cursor"
@@ -9,13 +23,6 @@ projects:
     links:
       - type: "demo"
         url: "https://househelper.lovable.app/"
-  - title: "Samudai"
-    description: "One stop solution for DAO operations"
-    tech: "React, Golang, Postgres, Redis, Mongo, Node, SIWE, safe-wallet"
-    file: "samudai.jpeg"
-    links:
-      - type: "github"
-        url: "https://github.com/Samudai/samudai-monorepo"
   - title: "Honest Box"
     description: "An Anonymous Feedback Platform"
     tech: "Lovable, Cursor, Supabase"
@@ -41,6 +48,13 @@ projects:
     links:
       - type: "github"
         url: "https://github.com/Piyushhbhutoria/whatsappWebAPI"
+  - title: "Samudai"
+    description: "One stop solution for DAO operations"
+    tech: "React, Golang, Postgres, Redis, Mongo, Node, SIWE, safe-wallet"
+    file: "samudai.jpeg"
+    links:
+      - type: "github"
+        url: "https://github.com/Samudai/samudai-monorepo"
   - title: "PDF tools"
     description: "PDF tools for merging, splitting, and extracting pages"
     tech: "Vite, React, Tailwind CSS, pdf-lib"

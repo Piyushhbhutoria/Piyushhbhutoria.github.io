@@ -1,7 +1,7 @@
 ---
-title: "IT Consulting | Freelancing"
+title: "Senior Backend Engineer | Freelancing"
 name: "Piyushh Bhutoria"
-description: "IT Consulting & Digital Transformation Agency | Data Analytics Experts | Freelancing"
+description: "Over 5+ years designing scalable distributed systems, microservices, and high-performance APIs. Fintech, logistics, B2B. AI-assisted development."
 cta:
   primary:
     text: "Get In Touch"
@@ -10,7 +10,7 @@ cta:
     text: "View Experience"
     href: "#experience"
 social:
-  medium: "https://medium.com/@piyushhbhutoria"
+  blog: "https://medium.com/@piyushhbhutoria"
   github: "https://github.com/Piyushhbhutoria"
   linkedin: "https://linkedin.com/in/piyushh-bhutoria"
   email: "mailto:piyush.bhutoria98@gmail.com"

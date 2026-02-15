@@ -18,8 +18,8 @@ contactItems:
     href: null
     color: "bg-accent"
 socialLinks:
-  - iconType: "medium"
-    label: "Medium"
+  - iconType: "blog"
+    label: "Blog"
     href: "https://medium.com/@piyushhbhutoria"
     color: "bg-primary"
   - iconType: "github"

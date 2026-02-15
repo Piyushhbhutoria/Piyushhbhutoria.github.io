@@ -1,18 +1,7 @@
 import heroBg from "@/assets/hero-bg.jpg";
 import { Button } from "@/components/ui/button";
 import type { HeroProps } from "@/types";
-import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
-
-const MediumIcon = ({ className }: { className?: string }) => (
-  <svg
-    className={className}
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z" />
-  </svg>
-);
+import { ArrowRight, BookOpen, Github, Linkedin, Mail } from "lucide-react";
 
 const Hero = ({ title, name, description, cta, social }: HeroProps) => {
   return (
@@ -71,14 +60,14 @@ const Hero = ({ title, name, description, cta, social }: HeroProps) => {
 
             <nav className="flex gap-4 pt-6" role="navigation" aria-label="Social media links">
               <a
-                href={social.medium}
+                href={social.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="brutal-border bg-card p-3 brutal-shadow-sm hover-lift"
-                aria-label="Visit Medium profile"
+                aria-label="Visit LinkedIn profile"
               >
-                <MediumIcon className="h-6 w-6" aria-hidden="true" />
-                <span className="sr-only">Medium</span>
+                <Linkedin className="h-6 w-6" aria-hidden="true" />
+                <span className="sr-only">LinkedIn</span>
               </a>
               <a
                 href={social.github}
@@ -91,14 +80,14 @@ const Hero = ({ title, name, description, cta, social }: HeroProps) => {
                 <span className="sr-only">GitHub</span>
               </a>
               <a
-                href={social.linkedin}
+                href={social.blog}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="brutal-border bg-card p-3 brutal-shadow-sm hover-lift"
-                aria-label="Visit LinkedIn profile"
+                aria-label="Visit blog"
               >
-                <Linkedin className="h-6 w-6" aria-hidden="true" />
-                <span className="sr-only">LinkedIn</span>
+                <BookOpen className="h-6 w-6" aria-hidden="true" />
+                <span className="sr-only">Blog</span>
               </a>
               <a
                 href={social.email}
