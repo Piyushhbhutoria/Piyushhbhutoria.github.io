@@ -31,7 +31,6 @@ export function ThemeProvider({
 
   useEffect(() => {
     setMounted(true)
-    // Load saved theme from localStorage on mount
     const savedTheme = localStorage.getItem(storageKey) as Theme
     if (savedTheme) {
       setTheme(savedTheme)

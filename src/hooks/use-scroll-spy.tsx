@@ -5,7 +5,7 @@ const useScrollSpy = (sectionIds: string[]) => {
 
     useEffect(() => {
         const handleScroll = () => {
-            const scrollPosition = window.scrollY + 150; // Offset for header
+            const scrollPosition = window.scrollY + 150;
 
             for (let i = sectionIds.length - 1; i >= 0; i--) {
                 const id = sectionIds[i];
@@ -22,7 +22,6 @@ const useScrollSpy = (sectionIds: string[]) => {
             }
         };
 
-        // Also use IntersectionObserver as a fallback
         const observers: IntersectionObserver[] = [];
 
         sectionIds.forEach((id) => {
@@ -46,7 +45,7 @@ const useScrollSpy = (sectionIds: string[]) => {
         });
 
         window.addEventListener("scroll", handleScroll, { passive: true });
-        handleScroll(); // Initial check
+        handleScroll();
 
         return () => {
             window.removeEventListener("scroll", handleScroll);

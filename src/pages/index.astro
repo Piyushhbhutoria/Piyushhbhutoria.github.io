@@ -18,7 +18,6 @@ import { getEntry } from "astro:content";
 import { getImage } from "astro:assets";
 import { getRecentBlogPosts } from "@/lib/blog/getPosts";
 
-// Import all project images
 import honestBox from "@/assets/projects/honest-box.png";
 import houseHelp from "@/assets/projects/house-help.png";
 import samudai from "@/assets/projects/samudai.jpeg";
@@ -44,8 +43,7 @@ const openSourceProjectsEntry = await getEntry("site", "opensource-projects");
 const openSourceProjectsRawData =
     openSourceProjectsEntry.data as unknown as OpenSourceProjectsData;
 
-// Map filenames to imported images
-const imageMap: Record<string, any> = {
+const imageMap: Record<string, Parameters<typeof getImage>[0]["src"]> = {
     "honest-box.png": honestBox,
     "house-help.png": houseHelp,
     "samudai.jpeg": samudai,
@@ -60,7 +58,6 @@ const imageMap: Record<string, any> = {
     "vwo-go-sdk.png": vwoGoSdk,
 };
 
-// Optimize images and get URLs
 const optimizedImages: Record<string, string> = {};
 for (const [filename, image] of Object.entries(imageMap)) {
     const optimized = await getImage({
@@ -102,7 +99,6 @@ const contactEntry = await getEntry("site", "contact");
 const contactData = contactEntry.data as unknown as ContactData;
 const recentBlogs = await getRecentBlogPosts(3);
 
-// SEO Configuration
 const siteUrl = "https://piyushhbhutoria.github.io";
 const OG_IMAGE_WIDTH = 1200;
 const OG_IMAGE_HEIGHT = 630;
@@ -249,11 +245,8 @@ const seoData = {
                             id,
                             value,
                         });
-                        if (
-                            typeof window !== "undefined" &&
-                            typeof (window as any).gtag !== "undefined"
-                        ) {
-                            (window as any).gtag("event", name, {
+                        if (typeof window !== "undefined" && typeof window.gtag === "function") {
+                            window.gtag("event", name, {
                                 value: Math.round(
                                     name === "CLS" ? delta * 1000 : delta,
                                 ),
