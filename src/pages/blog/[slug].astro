@@ -1,0 +1,266 @@
+---
+import "@/index.css";
+import { getAllBlogEntries, getBlogEntryBySlug, getBlogPostBySlug } from "@/lib/blog/getPosts";
+
+const siteUrl = "https://piyushhbhutoria.github.io";
+const fallbackOgImage = `${siteUrl}/og-image.png`;
+
+export async function getStaticPaths() {
+  const entries = await getAllBlogEntries();
+
+  return entries.map((entry) => ({
+    params: { slug: entry.slug },
+  }));
+}
+
+const slug = Astro.params.slug;
+const entry = slug ? await getBlogEntryBySlug(slug) : undefined;
+const post = slug ? await getBlogPostBySlug(slug) : undefined;
+
+if (!entry || !post) {
+  return Astro.redirect("/blog");
+}
+
+const { Content } = await entry.render();
+
+const pageTitle = `${post.title} | Piyushh Bhutoria`;
+const pageDescription = post.excerpt;
+const ogImage = post.coverImageUrl || fallbackOgImage;
+const sourceLabel = post.source === "medium" ? "Medium" : "LinkedIn";
+const pageUrl = `${siteUrl}/blog/${post.slug}`;
+
+const breadcrumbSchema = {
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: siteUrl,
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Blog",
+      item: `${siteUrl}/blog`,
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: post.title,
+      item: pageUrl,
+    },
+  ],
+};
+
+const blogPostingSchema = {
+  "@type": "BlogPosting",
+  headline: post.title,
+  description: post.excerpt,
+  datePublished: post.publishedAt,
+  dateModified: post.updatedAt || post.publishedAt,
+  author: {
+    "@type": "Person",
+    name: post.authorName,
+    url: post.authorProfileUrl,
+  },
+  publisher: {
+    "@type": "Person",
+    name: "Piyushh Bhutoria",
+    url: siteUrl,
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": post.canonicalUrl,
+  },
+  image: ogImage,
+  url: pageUrl,
+  sameAs: post.sourceUrl ? [post.sourceUrl] : undefined,
+  articleSection: post.tags,
+  keywords: post.tags.join(", "),
+};
+
+const dateFormatter = new Intl.DateTimeFormat("en-US", {
+  month: "long",
+  day: "numeric",
+  year: "numeric",
+});
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0c0c0f" />
+
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href={post.canonicalUrl} />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="article:published_time" content={post.publishedAt} />
+    <meta property="article:modified_time" content={post.updatedAt || post.publishedAt} />
+    <meta property="article:author" content={post.authorName} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <script is:inline>
+      (() => {
+        const storageKey = "portfolio-theme";
+        const root = document.documentElement;
+        const savedTheme = localStorage.getItem(storageKey);
+        const theme = savedTheme === "dark" || savedTheme === "light"
+          ? savedTheme
+          : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        root.classList.remove("light", "dark");
+        root.classList.add(theme);
+      })();
+    </script>
+
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@graph": [blogPostingSchema, breadcrumbSchema],
+      })}
+    />
+
+    <style is:inline>
+      .article-content h2,
+      .article-content h3,
+      .article-content h4 {
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+        font-weight: 800;
+      }
+
+      .article-content p,
+      .article-content ul,
+      .article-content ol,
+      .article-content blockquote,
+      .article-content pre {
+        margin-top: 1rem;
+      }
+
+      .article-content ul,
+      .article-content ol {
+        padding-left: 1.25rem;
+      }
+
+      .article-content blockquote {
+        border-left: 4px solid hsl(var(--border));
+        padding-left: 1rem;
+        font-style: italic;
+      }
+
+      .article-content pre {
+        overflow-x: auto;
+        border: 3px solid hsl(var(--border));
+        padding: 0.75rem;
+      }
+
+      .article-content img {
+        border: 4px solid hsl(var(--border));
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="min-h-screen px-6 py-10 md:px-10 lg:px-16">
+      <article class="mx-auto max-w-4xl brutal-border bg-card p-8 brutal-shadow">
+        <div class="flex items-center justify-between gap-4">
+          <a href="/blog" class="inline-block font-bold hover:underline">← Back to Blog</a>
+          <button
+            data-theme-toggle
+            type="button"
+            class="inline-flex items-center gap-2 brutal-border bg-card px-3 py-2 brutal-shadow-sm hover-lift font-bold"
+            aria-label="Toggle theme"
+            aria-pressed="false"
+          >
+            <span aria-hidden="true" data-theme-icon>☀</span>
+            <span data-theme-label>Light</span>
+          </button>
+        </div>
+
+        <div class="mt-6 flex flex-wrap items-center gap-3 text-sm font-bold">
+          <span class="brutal-border bg-primary px-2 py-1 uppercase">{post.source}</span>
+          <span>{dateFormatter.format(new Date(post.publishedAt))}</span>
+          {post.readingTimeMinutes && <span>{post.readingTimeMinutes} min read</span>}
+        </div>
+
+        <h1 class="mt-6 text-4xl font-black leading-tight md:text-5xl">{post.title}</h1>
+
+        {post.tags.length > 0 && (
+          <ul class="mt-6 flex flex-wrap gap-2" aria-label="Tags">
+            {post.tags.map((tag) => (
+              <li class="brutal-border bg-accent px-2 py-1 text-xs font-bold">{tag}</li>
+            ))}
+          </ul>
+        )}
+
+        <div class="article-content mt-8">
+          <Content />
+        </div>
+
+        {post.sourceUrl && (
+          <section class="mt-10 brutal-border bg-background p-5">
+            <h2 class="text-xl font-black">Original Source</h2>
+            <p class="mt-2 text-muted-foreground">
+              This article is mirrored here from {sourceLabel}.
+            </p>
+            <div class="mt-4 flex flex-wrap items-center gap-5">
+              <a href={post.sourceUrl} target="_blank" rel="noopener noreferrer" class="font-bold hover:underline" aria-label={`Read original post on ${sourceLabel}`}>
+                Open on {sourceLabel}
+              </a>
+              {post.authorProfileUrl && (
+                <a href={post.authorProfileUrl} target="_blank" rel="noopener noreferrer" class="font-bold hover:underline" aria-label={`Visit ${post.authorName} profile`}>
+                  Author Profile
+                </a>
+              )}
+            </div>
+          </section>
+        )}
+      </article>
+    </main>
+
+    <script is:inline>
+      (() => {
+        const storageKey = "portfolio-theme";
+        const root = document.documentElement;
+        const button = document.querySelector("[data-theme-toggle]");
+        const icon = document.querySelector("[data-theme-icon]");
+        const label = document.querySelector("[data-theme-label]");
+        if (!button || !icon || !label) return;
+
+        const currentTheme = () => (root.classList.contains("dark") ? "dark" : "light");
+
+        const applyThemeUi = () => {
+          const theme = currentTheme();
+          icon.textContent = theme === "dark" ? "🌙" : "☀";
+          label.textContent = theme === "dark" ? "Dark" : "Light";
+          button.setAttribute("aria-pressed", String(theme === "dark"));
+        };
+
+        applyThemeUi();
+
+        button.addEventListener("click", () => {
+          const nextTheme = currentTheme() === "dark" ? "light" : "dark";
+          root.classList.remove("light", "dark");
+          root.classList.add(nextTheme);
+          localStorage.setItem(storageKey, nextTheme);
+          applyThemeUi();
+        });
+      })();
+    </script>
+  </body>
+</html>

@@ -101,44 +101,44 @@ All colors MUST be HSL.
 
   .dark {
     /* Neobrutalism Dark Mode */
-    --background: 240 10% 10%;
-    --foreground: 0 0% 100%;
+    --background: 45 18% 12%;
+    --foreground: 48 70% 92%;
 
-    --card: 240 10% 15%;
-    --card-foreground: 0 0% 100%;
+    --card: 45 22% 18%;
+    --card-foreground: 48 70% 92%;
 
-    --popover: 240 10% 15%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 45 24% 14%;
+    --popover-foreground: 48 70% 92%;
 
     /* Bright Yellow Primary */
-    --primary: 48 80% 53%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 48 96% 53%;
+    --primary-foreground: 0 0% 0%;
 
     /* Cyan Secondary */
-    --secondary: 189 80% 43%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 189 94% 43%;
+    --secondary-foreground: 0 0% 0%;
 
     /* Magenta Accent */
-    --accent: 328 80% 57%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 328 86% 57%;
+    --accent-foreground: 0 0% 0%;
 
-    --muted: 240 10% 25%;
-    --muted-foreground: 0 0% 70%;
+    --muted: 45 16% 24%;
+    --muted-foreground: 48 36% 76%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    /* Thick white borders for dark mode */
-    --border: 0 0% 100%;
-    --input: 0 0% 100%;
-    --ring: 0 0% 100%;
+    /* Warm light borders to complement light mode's black ink */
+    --border: 48 70% 92%;
+    --input: 48 70% 92%;
+    --ring: 48 70% 92%;
 
     --radius: 0rem;
 
-    /* Shadows for dark mode */
-    --shadow-brutal: 6px 6px 0px 0px hsl(0 0% 100%);
-    --shadow-brutal-lg: 10px 10px 0px 0px hsl(0 0% 100%);
-    --shadow-brutal-sm: 4px 4px 0px 0px hsl(0 0% 100%);
+    /* Warm light shadows for dark mode */
+    --shadow-brutal: 6px 6px 0px 0px hsl(48 70% 92%);
+    --shadow-brutal-lg: 10px 10px 0px 0px hsl(48 70% 92%);
+    --shadow-brutal-sm: 4px 4px 0px 0px hsl(48 70% 92%);
   }
 }
 
@@ -190,7 +190,7 @@ All colors MUST be HSL.
   }
 
   .dark .hover-lift:hover {
-    box-shadow: 8px 8px 0px 0px hsl(0 0% 100%);
+    box-shadow: 8px 8px 0px 0px hsl(48 70% 92%);
   }
 
   .sr-only {

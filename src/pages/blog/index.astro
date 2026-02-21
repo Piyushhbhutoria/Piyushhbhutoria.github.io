@@ -1,0 +1,183 @@
+---
+import "@/index.css";
+import { getAllBlogPosts } from "@/lib/blog/getPosts";
+
+const siteUrl = "https://piyushhbhutoria.github.io";
+const pageUrl = `${siteUrl}/blog`;
+const pageTitle = "Blog | Piyushh Bhutoria";
+const pageDescription = "Full engineering and product posts from Medium and LinkedIn, hosted on this site.";
+const ogImage = `${siteUrl}/og-image.png`;
+
+const posts = await getAllBlogPosts();
+
+const dateFormatter = new Intl.DateTimeFormat("en-US", {
+  month: "short",
+  day: "numeric",
+  year: "numeric",
+});
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0c0c0f" />
+
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={pageUrl} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:image" content={ogImage} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <script is:inline>
+      (() => {
+        const storageKey = "portfolio-theme";
+        const root = document.documentElement;
+        const savedTheme = localStorage.getItem(storageKey);
+        const theme = savedTheme === "dark" || savedTheme === "light"
+          ? savedTheme
+          : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        root.classList.remove("light", "dark");
+        root.classList.add(theme);
+      })();
+    </script>
+
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": `${pageUrl}#collection`,
+            url: pageUrl,
+            name: pageTitle,
+            description: pageDescription,
+            isPartOf: {
+              "@type": "WebSite",
+              url: siteUrl,
+              name: "Piyushh Bhutoria",
+            },
+          },
+          {
+            "@type": "ItemList",
+            itemListElement: posts.map((post, index) => ({
+              "@type": "ListItem",
+              position: index + 1,
+              url: `${siteUrl}/blog/${post.slug}`,
+              name: post.title,
+            })),
+          },
+        ],
+      })}
+    />
+  </head>
+  <body>
+    <main class="min-h-screen px-6 py-10 md:px-10 lg:px-16">
+      <header class="mx-auto mb-10 max-w-5xl">
+        <div class="flex items-center justify-between gap-4">
+          <a href="/" class="inline-block brutal-border bg-card px-3 py-2 brutal-shadow-sm hover-lift font-bold">
+            Back Home
+          </a>
+          <button
+            data-theme-toggle
+            type="button"
+            class="inline-flex items-center gap-2 brutal-border bg-card px-3 py-2 brutal-shadow-sm hover-lift font-bold"
+            aria-label="Toggle theme"
+            aria-pressed="false"
+          >
+            <span aria-hidden="true" data-theme-icon>☀</span>
+            <span data-theme-label>Light</span>
+          </button>
+        </div>
+        <h1 class="mt-8 text-4xl font-black md:text-5xl">Blog</h1>
+        <p class="mt-4 max-w-2xl text-lg text-muted-foreground">
+          Full posts are available directly on this site.
+        </p>
+      </header>
+
+      <section class="mx-auto grid max-w-5xl gap-6" aria-label="Blog posts">
+        {posts.length === 0 ? (
+          <article class="brutal-border bg-card p-6 brutal-shadow">
+            <h2 class="text-xl font-bold">No posts yet</h2>
+            <p class="mt-2 text-muted-foreground">
+              Run <code>npm run blog:sync</code> to import Medium posts or add a LinkedIn MDX entry in <code>src/content/blog</code>.
+            </p>
+          </article>
+        ) : (
+          posts.map((post) => (
+            <article class="brutal-border bg-card p-6 brutal-shadow" aria-labelledby={`post-${post.id}`}>
+              <div class="mb-3 flex flex-wrap items-center gap-3 text-sm font-bold">
+                <span class="brutal-border bg-secondary px-2 py-1 uppercase">{post.source}</span>
+                <span>{dateFormatter.format(new Date(post.publishedAt))}</span>
+                {post.readingTimeMinutes && <span>{post.readingTimeMinutes} min read</span>}
+              </div>
+              <h2 id={`post-${post.id}`} class="text-2xl font-black">
+                <a href={`/blog/${post.slug}`} class="hover:underline">{post.title}</a>
+              </h2>
+              <p class="mt-3 text-muted-foreground">{post.excerpt}</p>
+              {post.tags.length > 0 && (
+                <ul class="mt-4 flex flex-wrap gap-2" aria-label="Tags">
+                  {post.tags.map((tag) => (
+                    <li class="brutal-border bg-accent px-2 py-1 text-xs font-bold">{tag}</li>
+                  ))}
+                </ul>
+              )}
+              <div class="mt-6 flex flex-wrap items-center gap-4">
+                <a href={`/blog/${post.slug}`} class="font-bold hover:underline" aria-label={`Read full post ${post.title}`}>
+                  Read Full Article
+                </a>
+                {post.sourceUrl && (
+                  <a href={post.sourceUrl} class="font-bold hover:underline" target="_blank" rel="noopener noreferrer" aria-label={`Open original source for ${post.title}`}>
+                    Original Source
+                  </a>
+                )}
+              </div>
+            </article>
+          ))
+        )}
+      </section>
+    </main>
+
+    <script is:inline>
+      (() => {
+        const storageKey = "portfolio-theme";
+        const root = document.documentElement;
+        const button = document.querySelector("[data-theme-toggle]");
+        const icon = document.querySelector("[data-theme-icon]");
+        const label = document.querySelector("[data-theme-label]");
+        if (!button || !icon || !label) return;
+
+        const currentTheme = () => (root.classList.contains("dark") ? "dark" : "light");
+
+        const applyThemeUi = () => {
+          const theme = currentTheme();
+          icon.textContent = theme === "dark" ? "🌙" : "☀";
+          label.textContent = theme === "dark" ? "Dark" : "Light";
+          button.setAttribute("aria-pressed", String(theme === "dark"));
+        };
+
+        applyThemeUi();
+
+        button.addEventListener("click", () => {
+          const nextTheme = currentTheme() === "dark" ? "light" : "dark";
+          root.classList.remove("light", "dark");
+          root.classList.add(nextTheme);
+          localStorage.setItem(storageKey, nextTheme);
+          applyThemeUi();
+        });
+      })();
+    </script>
+  </body>
+</html>

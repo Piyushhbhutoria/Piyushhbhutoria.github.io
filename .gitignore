@@ -25,6 +25,8 @@ pnpm-debug.log*
 
 .beads/
 .cursor/
+.codex/
 .vscode/
 .cursorignore
 WARP.md
+AGENTS.md

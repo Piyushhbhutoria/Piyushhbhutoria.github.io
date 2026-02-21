@@ -12,6 +12,7 @@ const Header = () => {
 
   const navItems = [
     { label: "About", href: "#about", id: "about" },
+    { label: "Blog", href: "/blog", id: "blog", isExternal: true },
     { label: "Projects", href: "#projects", id: "projects" },
     { label: "Open Source Projects", href: "#open-source-projects", id: "open-source-projects" },
     { label: "Experience", href: "#experience", id: "experience" },
@@ -19,7 +20,10 @@ const Header = () => {
     { label: "Contact", href: "#contact", id: "contact" }
   ];
 
-  const activeSection = useScrollSpy(navItems.map(item => item.id));
+  const scrollSpySectionIds = navItems
+    .filter((item) => !item.isExternal)
+    .map((item) => item.id);
+  const activeSection = useScrollSpy(scrollSpySectionIds);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,8 +58,8 @@ const Header = () => {
                 className={`font-bold transition-colors ${activeSection === item.id ? "text-accent" : "hover:text-primary"
                   }`}
                 role="listitem"
-                aria-label={`Navigate to ${item.label} section`}
-                aria-current={activeSection === item.id ? "page" : undefined}
+                aria-label={item.isExternal ? `Navigate to ${item.label} page` : `Navigate to ${item.label} section`}
+                aria-current={!item.isExternal && activeSection === item.id ? "page" : undefined}
               >
                 {item.label}
               </a>
@@ -128,8 +132,8 @@ const Header = () => {
                 className={`block font-bold transition-colors py-2 ${activeSection === item.id ? "text-primary" : "hover:text-primary"
                   }`}
                 role="menuitem"
-                aria-label={`Navigate to ${item.label} section`}
-                aria-current={activeSection === item.id ? "page" : undefined}
+                aria-label={item.isExternal ? `Navigate to ${item.label} page` : `Navigate to ${item.label} section`}
+                aria-current={!item.isExternal && activeSection === item.id ? "page" : undefined}
               >
                 {item.label}
               </a>

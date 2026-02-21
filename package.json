@@ -11,6 +11,7 @@
     "src/styles/**/*"
   ],
   "scripts": {
+    "blog:sync": "tsx scripts/sync-medium.ts",
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
@@ -41,8 +42,11 @@
     "tailwindcss": "^4.1.17"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.6",
     "@astrojs/sitemap": "^3.7.0",
     "rollup-plugin-visualizer": "^6.0.5",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.3",
     "web-vitals": "^5.1.0"
   }
 }

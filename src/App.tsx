@@ -4,7 +4,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import type { IndexProps } from "@/types";
 
-const App = ({ heroData, aboutData, experienceData, projectsData, openSourceProjectsData, skillsData, certificationsData, achievementsData, educationData, contactData }: IndexProps) => (
+const App = ({ heroData, aboutData, experienceData, projectsData, openSourceProjectsData, skillsData, certificationsData, achievementsData, educationData, contactData, recentBlogs }: IndexProps) => (
   <ThemeProvider defaultTheme="dark" storageKey="portfolio-theme">
     <TooltipProvider>
       <Toaster />
@@ -19,6 +19,7 @@ const App = ({ heroData, aboutData, experienceData, projectsData, openSourceProj
         achievementsData={achievementsData}
         educationData={educationData}
         contactData={contactData}
+        recentBlogs={recentBlogs}
       />
     </TooltipProvider>
   </ThemeProvider>

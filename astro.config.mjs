@@ -26,7 +26,7 @@ export default defineConfig({
   },
 
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [/** @type {any} */ (tailwindcss())],
     resolve: {
       alias: {
         '@': '/src',

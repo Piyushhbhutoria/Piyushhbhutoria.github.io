@@ -16,6 +16,7 @@ import type {
 } from "@/types";
 import { getEntry } from "astro:content";
 import { getImage } from "astro:assets";
+import { getRecentBlogPosts } from "@/lib/blog/getPosts";
 
 // Import all project images
 import honestBox from "@/assets/projects/honest-box.png";
@@ -99,6 +100,7 @@ const educationEntry = await getEntry("site", "education");
 const educationData = educationEntry.data as unknown as EducationData;
 const contactEntry = await getEntry("site", "contact");
 const contactData = contactEntry.data as unknown as ContactData;
+const recentBlogs = await getRecentBlogPosts(3);
 
 // SEO Configuration
 const siteUrl = "https://piyushhbhutoria.github.io";
@@ -289,6 +291,7 @@ const seoData = {
             achievementsData={achievementsData}
             educationData={educationData}
             contactData={contactData}
+            recentBlogs={recentBlogs}
         />
     </body>
 </html>

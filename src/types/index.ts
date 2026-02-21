@@ -1,4 +1,5 @@
 import type React from "react";
+import type { BlogPost } from "@/types/blog";
 
 // Color theme types
 export type ThemeColor = "bg-primary" | "bg-secondary" | "bg-accent";
@@ -191,5 +192,5 @@ export interface IndexProps {
     achievementsData: AchievementsData;
     educationData: EducationData;
     contactData: ContactData;
+    recentBlogs: BlogPost[];
 }
-

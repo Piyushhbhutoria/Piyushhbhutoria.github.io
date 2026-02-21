@@ -1,22 +1,27 @@
 {
   "targets": [
     "warp",
-    "cursor"
+    "cursor",
+    "codexcli"
   ],
   "features": [
     "rules",
     "ignore",
     "mcp",
     "commands",
-    "subagents"
+    "subagents",
+    "skills",
+    "hooks"
   ],
   "baseDirs": [
     "."
   ],
   "delete": true,
   "verbose": false,
+  "silent": false,
   "global": false,
-  "simulatedCommands": true,
-  "simulatedSubagents": false,
+  "simulateCommands": false,
+  "simulateSubagents": false,
+  "simulateSkills": false,
   "modularMcp": true
 }
