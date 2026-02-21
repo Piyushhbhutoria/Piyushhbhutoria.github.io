@@ -118,29 +118,49 @@ const dateFormatter = new Intl.DateTimeFormat("en-US", {
         ) : (
           posts.map((post) => (
             <article class="brutal-border bg-card p-6 brutal-shadow" aria-labelledby={`post-${post.id}`}>
-              <div class="mb-3 flex flex-wrap items-center gap-3 text-sm font-bold">
-                <span class="brutal-border bg-secondary px-2 py-1 uppercase">{post.source}</span>
-                <span>{dateFormatter.format(new Date(post.publishedAt))}</span>
-                {post.readingTimeMinutes && <span>{post.readingTimeMinutes} min read</span>}
-              </div>
-              <h2 id={`post-${post.id}`} class="text-2xl font-black">
-                <a href={`/blog/${post.slug}`} class="hover:underline">{post.title}</a>
-              </h2>
-              <p class="mt-3 text-muted-foreground">{post.excerpt}</p>
-              {post.tags.length > 0 && (
-                <ul class="mt-4 flex flex-wrap gap-2" aria-label="Tags">
-                  {post.tags.map((tag) => (
-                    <li class="brutal-border bg-accent px-2 py-1 text-xs font-bold">{tag}</li>
-                  ))}
-                </ul>
-              )}
-              <div class="mt-6 flex flex-wrap items-center gap-4">
-                <a href={`/blog/${post.slug}`} class="font-bold hover:underline" aria-label={`Read full post ${post.title}`}>
-                  Read Full Article
-                </a>
-                {post.sourceUrl && (
-                  <a href={post.sourceUrl} class="font-bold hover:underline" target="_blank" rel="noopener noreferrer" aria-label={`Open original source for ${post.title}`}>
-                    Original Source
+              <div class="grid gap-6 md:grid-cols-[minmax(0,1fr)_280px] md:items-start">
+                <div>
+                  <div class="mb-3 flex flex-wrap items-center gap-3 text-sm font-bold">
+                    <span class="brutal-border bg-accent px-2 py-1 uppercase">{post.source}</span>
+                    <span>{dateFormatter.format(new Date(post.publishedAt))}</span>
+                    {post.readingTimeMinutes && <span>{post.readingTimeMinutes} min read</span>}
+                  </div>
+                  <h2 id={`post-${post.id}`} class="text-2xl font-black">
+                    <a href={`/blog/${post.slug}`} class="hover:underline">{post.title}</a>
+                  </h2>
+                  <p class="mt-3 text-muted-foreground">{post.excerpt}</p>
+                  {post.tags.length > 0 && (
+                    <ul class="mt-4 flex flex-wrap gap-2" aria-label="Tags">
+                      {post.tags.map((tag) => (
+                        <li class="brutal-border bg-secondary px-2 py-1 text-xs font-bold">{tag}</li>
+                      ))}
+                    </ul>
+                  )}
+                  <div class="mt-6 flex flex-wrap items-center gap-4">
+                    <a href={`/blog/${post.slug}`} class="font-bold hover:underline" aria-label={`Read full post ${post.title}`}>
+                      Read Full Article
+                    </a>
+                    {post.sourceUrl && (
+                      <a href={post.sourceUrl} class="font-bold hover:underline" target="_blank" rel="noopener noreferrer" aria-label={`Open original source for ${post.title}`}>
+                        Original Source
+                      </a>
+                    )}
+                  </div>
+                </div>
+
+                {post.coverImageUrl && (
+                  <a
+                    href={`/blog/${post.slug}`}
+                    class="block overflow-hidden brutal-border bg-background md:justify-self-end md:w-[280px]"
+                    aria-label={`Open ${post.title}`}
+                  >
+                    <img
+                      src={post.coverImageUrl}
+                      alt={post.title}
+                      class="h-52 w-full object-cover md:h-44"
+                      loading="lazy"
+                      decoding="async"
+                    />
                   </a>
                 )}
               </div>

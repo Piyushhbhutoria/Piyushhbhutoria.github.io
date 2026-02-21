@@ -135,51 +135,127 @@ const dateFormatter = new Intl.DateTimeFormat("en-US", {
     />
 
     <style is:inline>
+      .article-content {
+        max-width: 72ch;
+      }
+
       .article-content h2,
       .article-content h3,
       .article-content h4 {
-        margin-top: 1.5rem;
+        scroll-margin-top: 6rem;
+        margin-top: 2rem;
         margin-bottom: 0.75rem;
-        font-weight: 800;
+        line-height: 1.2;
+        font-weight: 900;
+      }
+
+      .article-content h2 {
+        font-size: clamp(1.5rem, 2vw, 2rem);
+      }
+
+      .article-content h3 {
+        font-size: clamp(1.25rem, 1.7vw, 1.5rem);
+      }
+
+      .article-content h4 {
+        font-size: clamp(1.1rem, 1.4vw, 1.25rem);
       }
 
       .article-content p,
       .article-content ul,
       .article-content ol,
       .article-content blockquote,
-      .article-content pre {
-        margin-top: 1rem;
+      .article-content pre,
+      .article-content table,
+      .article-content figure,
+      .article-content hr {
+        margin-top: 1.1rem;
       }
 
       .article-content ul,
       .article-content ol {
-        padding-left: 1.25rem;
+        padding-left: 1.35rem;
+        display: grid;
+        gap: 0.45rem;
+      }
+
+      .article-content li::marker {
+        font-weight: 800;
       }
 
       .article-content blockquote {
-        border-left: 4px solid hsl(var(--border));
-        padding-left: 1rem;
+        border-left: 6px solid hsl(var(--accent));
+        padding: 0.85rem 1rem;
+        background: hsl(var(--muted));
         font-style: italic;
       }
 
       .article-content pre {
         overflow-x: auto;
         border: 3px solid hsl(var(--border));
-        padding: 0.75rem;
+        background: hsl(var(--card));
+        padding: 0.9rem;
+        line-height: 1.5;
+      }
+
+      .article-content code {
+        font-size: 0.92em;
+      }
+
+      .article-content a {
+        text-decoration: underline;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 2px;
+      }
+
+      .article-content a:hover {
+        color: hsl(var(--accent));
+      }
+
+      .article-content hr {
+        border: 0;
+        border-top: 4px solid hsl(var(--border));
       }
 
       .article-content img {
         border: 4px solid hsl(var(--border));
-        margin-top: 1rem;
-        margin-bottom: 1rem;
+        box-shadow: var(--shadow-brutal-sm);
+        margin-top: 1.25rem;
+        margin-bottom: 0.6rem;
+      }
+
+      .article-content figcaption {
+        font-size: 0.85rem;
+        color: hsl(var(--muted-foreground));
+      }
+
+      .toc-link-active {
+        color: hsl(var(--accent));
+        text-decoration: underline;
+        text-underline-offset: 2px;
       }
     </style>
   </head>
   <body>
-    <main class="min-h-screen px-6 py-10 md:px-10 lg:px-16">
-      <article class="mx-auto max-w-4xl brutal-border bg-card p-8 brutal-shadow">
-        <div class="flex items-center justify-between gap-4">
-          <a href="/blog" class="inline-block font-bold hover:underline">← Back to Blog</a>
+    <div class="fixed inset-x-0 top-0 z-[70] h-1 bg-muted/50" aria-hidden="true">
+      <div
+        data-reading-progress
+        role="progressbar"
+        aria-label="Reading progress"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuenow="0"
+        class="h-full w-0 bg-accent transition-[width] duration-150"
+      ></div>
+    </div>
+
+    <main class="min-h-screen px-4 py-8 sm:px-6 lg:px-10">
+      <div class="mx-auto max-w-7xl">
+        <header class="mb-8 flex items-center justify-between gap-4">
+          <a href="/blog" class="inline-flex items-center gap-2 brutal-border bg-card px-3 py-2 brutal-shadow-sm hover-lift font-bold">
+            <span aria-hidden="true">←</span>
+            Back to Blog
+          </a>
           <button
             data-theme-toggle
             type="button"
@@ -190,76 +266,238 @@ const dateFormatter = new Intl.DateTimeFormat("en-US", {
             <span aria-hidden="true" data-theme-icon>☀</span>
             <span data-theme-label>Light</span>
           </button>
-        </div>
+        </header>
 
-        <div class="mt-6 flex flex-wrap items-center gap-3 text-sm font-bold">
-          <span class="brutal-border bg-primary px-2 py-1 uppercase">{post.source}</span>
-          <span>{dateFormatter.format(new Date(post.publishedAt))}</span>
-          {post.readingTimeMinutes && <span>{post.readingTimeMinutes} min read</span>}
-        </div>
+        <div class="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_20rem]">
+          <article class="order-2 space-y-6 lg:order-1">
+            <section class="brutal-border bg-card p-6 md:p-8 brutal-shadow" aria-labelledby="blog-post-title">
+              <div class="mb-4 flex flex-wrap items-center gap-3 text-sm font-bold">
+                <span class="brutal-border bg-accent px-2 py-1 uppercase">{post.source}</span>
+                <span>{dateFormatter.format(new Date(post.publishedAt))}</span>
+                {post.readingTimeMinutes && <span>{post.readingTimeMinutes} min read</span>}
+              </div>
 
-        <h1 class="mt-6 text-4xl font-black leading-tight md:text-5xl">{post.title}</h1>
+              <h1 id="blog-post-title" class="text-3xl font-black leading-tight md:text-5xl">{post.title}</h1>
 
-        {post.tags.length > 0 && (
-          <ul class="mt-6 flex flex-wrap gap-2" aria-label="Tags">
-            {post.tags.map((tag) => (
-              <li class="brutal-border bg-accent px-2 py-1 text-xs font-bold">{tag}</li>
-            ))}
-          </ul>
-        )}
-
-        <div class="article-content mt-8">
-          <Content />
-        </div>
-
-        {post.sourceUrl && (
-          <section class="mt-10 brutal-border bg-background p-5">
-            <h2 class="text-xl font-black">Original Source</h2>
-            <p class="mt-2 text-muted-foreground">
-              This article is mirrored here from {sourceLabel}.
-            </p>
-            <div class="mt-4 flex flex-wrap items-center gap-5">
-              <a href={post.sourceUrl} target="_blank" rel="noopener noreferrer" class="font-bold hover:underline" aria-label={`Read original post on ${sourceLabel}`}>
-                Open on {sourceLabel}
-              </a>
-              {post.authorProfileUrl && (
-                <a href={post.authorProfileUrl} target="_blank" rel="noopener noreferrer" class="font-bold hover:underline" aria-label={`Visit ${post.authorName} profile`}>
-                  Author Profile
-                </a>
+              {post.tags.length > 0 && (
+                <ul class="mt-5 flex flex-wrap gap-2" aria-label="Tags">
+                  {post.tags.map((tag) => (
+                    <li class="brutal-border bg-secondary px-2 py-1 text-xs font-bold">{tag}</li>
+                  ))}
+                </ul>
               )}
+            </section>
+
+            <section class="brutal-border bg-muted/30 p-4 md:p-6 brutal-shadow-sm" aria-label="Article content">
+              <div class="article-content" id="article-content">
+                <Content />
+              </div>
+            </section>
+          </article>
+
+          <aside class="order-1 lg:order-2" aria-label="Post metadata and actions">
+            <div class="space-y-4 lg:sticky lg:top-6">
+              <section class="brutal-border bg-card p-4 brutal-shadow-sm">
+                <h2 class="text-lg font-black">Post Details</h2>
+                <dl class="mt-3 space-y-2 text-sm">
+                  <div class="flex items-center justify-between gap-3">
+                    <dt class="font-bold text-muted-foreground">Source</dt>
+                    <dd class="font-bold">{sourceLabel}</dd>
+                  </div>
+                  <div class="flex items-center justify-between gap-3">
+                    <dt class="font-bold text-muted-foreground">Published</dt>
+                    <dd class="font-bold text-right">{dateFormatter.format(new Date(post.publishedAt))}</dd>
+                  </div>
+                  {post.readingTimeMinutes && (
+                    <div class="flex items-center justify-between gap-3">
+                      <dt class="font-bold text-muted-foreground">Read Time</dt>
+                      <dd class="font-bold">{post.readingTimeMinutes} min</dd>
+                    </div>
+                  )}
+                </dl>
+              </section>
+
+              <section class="brutal-border bg-card p-4 brutal-shadow-sm">
+                <h2 class="text-lg font-black">Quick Actions</h2>
+                <div class="mt-3 grid gap-2">
+                  <button
+                    type="button"
+                    data-copy-link
+                    data-copy-url={post.canonicalUrl}
+                    class="inline-flex w-full items-center justify-center gap-2 brutal-border bg-primary px-3 py-2 brutal-shadow-sm hover-lift font-bold"
+                    aria-label="Copy article link"
+                  >
+                    Copy Link
+                  </button>
+                  <p data-copy-status class="text-xs font-bold text-muted-foreground" aria-live="polite"></p>
+
+                  {post.sourceUrl && (
+                    <a
+                      href={post.sourceUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex w-full items-center justify-center gap-2 brutal-border bg-accent px-3 py-2 brutal-shadow-sm hover-lift font-bold"
+                      aria-label={`Open original post on ${sourceLabel}`}
+                    >
+                      Open on {sourceLabel}
+                    </a>
+                  )}
+                </div>
+              </section>
+
+              <section data-toc-container class="brutal-border bg-card p-4 brutal-shadow-sm" aria-label="Table of contents">
+                <h2 class="text-lg font-black">On This Page</h2>
+                <nav class="mt-3" aria-label="Table of contents">
+                  <ul data-toc-list class="space-y-2 text-sm font-bold"></ul>
+                </nav>
+              </section>
             </div>
-          </section>
-        )}
-      </article>
+          </aside>
+        </div>
+      </div>
     </main>
 
     <script is:inline>
       (() => {
         const storageKey = "portfolio-theme";
         const root = document.documentElement;
-        const button = document.querySelector("[data-theme-toggle]");
-        const icon = document.querySelector("[data-theme-icon]");
-        const label = document.querySelector("[data-theme-label]");
-        if (!button || !icon || !label) return;
+        const themeButton = document.querySelector("[data-theme-toggle]");
+        const themeIcon = document.querySelector("[data-theme-icon]");
+        const themeLabel = document.querySelector("[data-theme-label]");
+        const copyButton = document.querySelector("[data-copy-link]");
+        const copyStatus = document.querySelector("[data-copy-status]");
+        const progress = document.querySelector("[data-reading-progress]");
+        const article = document.getElementById("article-content");
+        const tocContainer = document.querySelector("[data-toc-container]");
+        const tocList = document.querySelector("[data-toc-list]");
 
         const currentTheme = () => (root.classList.contains("dark") ? "dark" : "light");
 
         const applyThemeUi = () => {
+          if (!themeButton || !themeIcon || !themeLabel) return;
           const theme = currentTheme();
-          icon.textContent = theme === "dark" ? "🌙" : "☀";
-          label.textContent = theme === "dark" ? "Dark" : "Light";
-          button.setAttribute("aria-pressed", String(theme === "dark"));
+          themeIcon.textContent = theme === "dark" ? "🌙" : "☀";
+          themeLabel.textContent = theme === "dark" ? "Dark" : "Light";
+          themeButton.setAttribute("aria-pressed", String(theme === "dark"));
         };
 
         applyThemeUi();
 
-        button.addEventListener("click", () => {
-          const nextTheme = currentTheme() === "dark" ? "light" : "dark";
-          root.classList.remove("light", "dark");
-          root.classList.add(nextTheme);
-          localStorage.setItem(storageKey, nextTheme);
-          applyThemeUi();
-        });
+        if (themeButton) {
+          themeButton.addEventListener("click", () => {
+            const nextTheme = currentTheme() === "dark" ? "light" : "dark";
+            root.classList.remove("light", "dark");
+            root.classList.add(nextTheme);
+            localStorage.setItem(storageKey, nextTheme);
+            applyThemeUi();
+          });
+        }
+
+        if (copyButton && copyStatus) {
+          copyButton.addEventListener("click", async () => {
+            const copyUrl = copyButton.getAttribute("data-copy-url") || window.location.href;
+            try {
+              await navigator.clipboard.writeText(copyUrl);
+              copyStatus.textContent = "Copied link.";
+            } catch {
+              copyStatus.textContent = "Could not copy automatically.";
+            }
+            window.setTimeout(() => {
+              copyStatus.textContent = "";
+            }, 2000);
+          });
+        }
+
+        const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+
+        let ticking = false;
+        const updateProgress = () => {
+          if (!progress || !article) return;
+          const start = article.offsetTop - 120;
+          const end = start + article.offsetHeight - window.innerHeight;
+          const total = Math.max(1, end - start);
+          const value = clamp(((window.scrollY - start) / total) * 100, 0, 100);
+          progress.style.width = `${value}%`;
+          progress.setAttribute("aria-valuenow", String(Math.round(value)));
+        };
+
+        const onScroll = () => {
+          if (ticking) return;
+          ticking = true;
+          window.requestAnimationFrame(() => {
+            updateProgress();
+            ticking = false;
+          });
+        };
+
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("resize", onScroll);
+        updateProgress();
+
+        if (article && tocContainer && tocList) {
+          const headings = Array.from(article.querySelectorAll("h2, h3"));
+          const usedIds = new Set();
+
+          const slugify = (text) => text
+            .toLowerCase()
+            .trim()
+            .replace(/[^a-z0-9\s-]/g, "")
+            .replace(/\s+/g, "-")
+            .replace(/-+/g, "-")
+            .replace(/^-|-$/g, "");
+
+          headings.forEach((heading, index) => {
+            if (!heading.id) {
+              const base = slugify(heading.textContent || "section") || `section-${index + 1}`;
+              let candidate = base;
+              let count = 2;
+              while (usedIds.has(candidate) || document.getElementById(candidate)) {
+                candidate = `${base}-${count}`;
+                count += 1;
+              }
+              heading.id = candidate;
+            }
+            usedIds.add(heading.id);
+          });
+
+          if (headings.length < 2) {
+            tocContainer.classList.add("hidden");
+          } else {
+            const links = [];
+            headings.forEach((heading) => {
+              const li = document.createElement("li");
+              const link = document.createElement("a");
+              const level = heading.tagName === "H3" ? "pl-4" : "";
+              link.href = `#${heading.id}`;
+              link.textContent = heading.textContent || "Section";
+              link.className = `block hover:underline ${level}`;
+              li.appendChild(link);
+              tocList.appendChild(li);
+              links.push(link);
+            });
+
+            const observer = new IntersectionObserver(
+              (entries) => {
+                const visible = entries
+                  .filter((entry) => entry.isIntersecting)
+                  .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+                if (!visible) return;
+
+                const activeId = visible.target.id;
+                links.forEach((link) => {
+                  const isActive = link.getAttribute("href") === `#${activeId}`;
+                  link.classList.toggle("toc-link-active", isActive);
+                });
+              },
+              {
+                rootMargin: "-20% 0px -65% 0px",
+                threshold: [0, 1],
+              },
+            );
+
+            headings.forEach((heading) => observer.observe(heading));
+          }
+        }
       })();
     </script>
   </body>
