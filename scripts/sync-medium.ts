@@ -3,6 +3,13 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 
 const FEED_URL = "https://medium.com/feed/@piyushhbhutoria";
+const IMAGE_FETCH_DELAY_MS = 300;
+
+const MEDIUM_FETCH_HEADERS = {
+  "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+  "Accept-Language": "en-US,en;q=0.9",
+  "Referer": "https://medium.com/",
+} as const;
 const BLOG_DIR = path.join(process.cwd(), "src/content/blog");
 const MEDIA_DIR = path.join(process.cwd(), "public/blog-media/medium");
 const DEFAULT_AUTHOR_NAME = "Piyushh Bhutoria";
@@ -183,15 +190,60 @@ const getExtension = (urlString: string, contentType: string | null): string => 
   return "jpg";
 };
 
-const localizeImages = async (slug: string, html: string): Promise<{ html: string; coverImageUrl?: string }> => {
+const sleep = (ms: number): Promise<void> => new Promise((resolve) => setTimeout(resolve, ms));
+
+const getRetryDelayMs = (response: Response): number => {
+  const retryAfter = response.headers.get("Retry-After");
+  if (retryAfter) {
+    const secs = parseInt(retryAfter, 10);
+    if (!Number.isNaN(secs)) {
+      return secs * 1000;
+    }
+  }
+  return 5000;
+};
+
+const fetchWithRetry = async (
+  url: string,
+  options: RequestInit,
+  maxRetries = 2,
+): Promise<Response> => {
+  for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    const res = await fetch(url, options);
+    if (res.status !== 429 || attempt === maxRetries) return res;
+    const delay = getRetryDelayMs(res);
+    console.warn(`[blog:sync] 429 rate limited, retrying in ${delay / 1000}s (attempt ${attempt + 1}/${maxRetries})`);
+    await sleep(delay);
+  }
+  throw new Error("fetchWithRetry: unreachable");
+};
+
+const findExistingImageFile = async (dir: string, hashPrefix: string): Promise<string | null> => {
+  let entries: Array<{ name: string; isFile: () => boolean }>;
+  try {
+    entries = await fs.readdir(dir, { withFileTypes: true });
+  } catch {
+    return null;
+  }
+  const prefix = hashPrefix.toLowerCase();
+  for (const e of entries) {
+    if (e.isFile() && e.name.toLowerCase().startsWith(prefix) && /\.(jpg|jpeg|png|webp|gif|svg)$/i.test(e.name)) {
+      return e.name;
+    }
+  }
+  return null;
+};
+
+const localizeImages = async (slug: string, html: string): Promise<{ html: string; coverImageUrl?: string; allLocalized: boolean }> => {
   const imgPattern = /<img([^>]*?)src=["']([^"']+)["']([^>]*?)>/gi;
   let localizedHtml = html;
   let coverImageUrl: string | undefined;
   const handledUrls = new Map<string, string>();
+  let anyFetchFailed = false;
 
   const matches = [...html.matchAll(imgPattern)];
   if (matches.length === 0) {
-    return { html };
+    return { html, allLocalized: true };
   }
 
   const postMediaDir = path.join(MEDIA_DIR, slug);
@@ -216,11 +268,27 @@ const localizeImages = async (slug: string, html: string): Promise<{ html: strin
       continue;
     }
 
+    const hashPrefix = hash(originalSrc).slice(0, 14);
+    const existingFile = await findExistingImageFile(postMediaDir, hashPrefix);
+    if (existingFile) {
+      const publicPath = `/blog-media/medium/${slug}/${existingFile}`;
+      handledUrls.set(originalSrc, publicPath);
+      localizedHtml = localizedHtml.replaceAll(originalSrc, publicPath);
+      if (!coverImageUrl) {
+        coverImageUrl = publicPath;
+      }
+      continue;
+    }
+
+    if (handledUrls.size > 0) {
+      await sleep(IMAGE_FETCH_DELAY_MS);
+    }
+
     try {
       const response = await fetch(originalSrc, {
         headers: {
+          ...MEDIUM_FETCH_HEADERS,
           "Accept": "image/avif,image/webp,image/apng,image/*,*/*;q=0.8",
-          "User-Agent": "Mozilla/5.0 (compatible; BlogSyncBot/1.0; +https://piyushhbhutoria.github.io)",
           "Referer": SITE_URL,
         },
       });
@@ -230,7 +298,7 @@ const localizeImages = async (slug: string, html: string): Promise<{ html: strin
 
       const buffer = Buffer.from(await response.arrayBuffer());
       const ext = getExtension(originalSrc, response.headers.get("content-type"));
-      const fileName = `${hash(originalSrc).slice(0, 14)}.${ext}`;
+      const fileName = `${hashPrefix}.${ext}`;
       const filePath = path.join(postMediaDir, fileName);
       const publicPath = `/blog-media/medium/${slug}/${fileName}`;
 
@@ -245,6 +313,7 @@ const localizeImages = async (slug: string, html: string): Promise<{ html: strin
     } catch (error) {
       console.warn(`[blog:sync] Failed to localize image ${originalSrc}:`, error);
       handledUrls.set(originalSrc, originalSrc);
+      anyFetchFailed = true;
       if (!coverImageUrl) {
         coverImageUrl = originalSrc;
       }
@@ -254,6 +323,7 @@ const localizeImages = async (slug: string, html: string): Promise<{ html: strin
   return {
     html: localizedHtml,
     coverImageUrl,
+    allLocalized: !anyFetchFailed,
   };
 };
 
@@ -275,11 +345,13 @@ const buildFrontmatter = (params: {
   coverImageUrl?: string;
   tags: string[];
   readingTime?: number;
+  lockSync?: boolean;
 }): string => {
   const coverImageLine = params.coverImageUrl ? `coverImageUrl: "${params.coverImageUrl}"\n` : "";
   const readingLine = params.readingTime ? `readingTimeMinutes: ${params.readingTime}\n` : "";
+  const lockSyncLine = `lockSync: ${params.lockSync === true}\n`;
 
-  return `---\nid: "${params.id}"\nslug: "${params.slug}"\ntitle: "${params.title.replaceAll("\"", "\\\"")}"\nexcerpt: "${params.excerpt.replaceAll("\"", "\\\"")}"\npublishedAt: "${params.publishedAt}"\nsource: "medium"\nsourceUrl: "${params.sourceUrl}"\ncanonicalMode: "site"\nauthorName: "${DEFAULT_AUTHOR_NAME}"\nauthorProfileUrl: "${DEFAULT_AUTHOR_PROFILE_URL}"\n${coverImageLine}tags:${yamlArray(params.tags)}\n${readingLine}visibility: "public"\nlockSync: false\n---\n`;
+  return `---\nid: "${params.id}"\nslug: "${params.slug}"\ntitle: "${params.title.replaceAll("\"", "\\\"")}"\nexcerpt: "${params.excerpt.replaceAll("\"", "\\\"")}"\npublishedAt: "${params.publishedAt}"\nsource: "medium"\nsourceUrl: "${params.sourceUrl}"\ncanonicalMode: "site"\nauthorName: "${DEFAULT_AUTHOR_NAME}"\nauthorProfileUrl: "${DEFAULT_AUTHOR_PROFILE_URL}"\n${coverImageLine}tags:${yamlArray(params.tags)}\n${readingLine}visibility: "public"\n${lockSyncLine}---\n`;
 };
 
 const extractFrontmatter = (fileContent: string): string => {
@@ -348,8 +420,9 @@ const syncMedium = async (): Promise<void> => {
 
   let xml = "";
   try {
-    const response = await fetch(FEED_URL, {
+    const response = await fetchWithRetry(FEED_URL, {
       headers: {
+        ...MEDIUM_FETCH_HEADERS,
         "Accept": "application/rss+xml, application/xml, text/xml;q=0.9, */*;q=0.8",
       },
     });
@@ -400,7 +473,8 @@ const syncMedium = async (): Promise<void> => {
       continue;
     }
 
-    const safeHtml = sanitizeHtml(item.content || item.description);
+    const rawBody = item.content || item.description;
+    const safeHtml = sanitizeHtml(rawBody);
     const localized = await localizeImages(slug, safeHtml);
     const coverImageUrl = localized.coverImageUrl || getCoverImage(localized.html);
     const excerpt = getExcerpt(item.description, localized.html);
@@ -418,10 +492,14 @@ const syncMedium = async (): Promise<void> => {
       coverImageUrl,
       tags: item.categories,
       readingTime,
+      lockSync: localized.allLocalized,
     });
 
     await writePostFile(targetFilePath, frontmatter, localized.html || `<p>${excerpt}</p>`);
     createdOrUpdated += 1;
+    if (localized.allLocalized) {
+      console.log(`[blog:sync] All images localized, locked from further updates: ${item.title}`);
+    }
   }
 
   console.log(`[blog:sync] Medium sync completed. Updated ${createdOrUpdated} post(s).`);
