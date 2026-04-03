@@ -1,13 +1,27 @@
 import { defineCollection, z } from "astro:content";
+import { glob } from "astro/loaders";
+
+/** Match markdown/MDX while skipping underscore-prefixed paths (e.g. `_templates/`). */
+const mdMdxPattern = [
+  "**/*.{md,mdx}",
+  "!**/_*/**/*.{md,mdx}",
+  "!**/_*.{md,mdx}",
+] as const;
 
 const site = defineCollection({
-  type: "content",
+  loader: glob({
+    base: "src/content/site",
+    pattern: [...mdMdxPattern],
+  }),
   // Accept mixed frontmatter from all sections
   schema: z.object({}).passthrough(),
 });
 
 const blog = defineCollection({
-  type: "content",
+  loader: glob({
+    base: "src/content/blog",
+    pattern: [...mdMdxPattern],
+  }),
   schema: z.object({
     id: z.string().min(1).optional(),
     title: z.string().min(1),

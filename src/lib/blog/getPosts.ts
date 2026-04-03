@@ -25,7 +25,7 @@ const getCanonicalUrl = (entry: CollectionEntry<"blog">): string => {
     return entry.data.sourceUrl;
   }
 
-  return `${SITE_URL}/blog/${entry.slug}`;
+  return `${SITE_URL}/blog/${entry.id}`;
 };
 
 const toBlogPost = (entry: CollectionEntry<"blog">): BlogPost | null => {
@@ -37,7 +37,7 @@ const toBlogPost = (entry: CollectionEntry<"blog">): BlogPost | null => {
 
   return {
     id: entry.data.id || entry.id,
-    slug: entry.slug,
+    slug: entry.id,
     title: entry.data.title,
     excerpt: entry.data.excerpt,
     publishedAt,
@@ -79,7 +79,7 @@ export const getRecentBlogPosts = async (limit = 3): Promise<BlogPost[]> => {
 
 export const getBlogEntryBySlug = async (slug: string): Promise<CollectionEntry<"blog"> | undefined> => {
   const entries = await getAllBlogEntries();
-  return entries.find((entry) => entry.slug === slug);
+  return entries.find((entry) => entry.id === slug);
 };
 
 export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | undefined> => {

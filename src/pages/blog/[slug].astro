@@ -1,5 +1,6 @@
 ---
 import "@/index.css";
+import { render } from "astro:content";
 import { getAllBlogEntries, getBlogEntryBySlug, getBlogPostBySlug } from "@/lib/blog/getPosts";
 
 const siteUrl = "https://piyushhbhutoria.github.io";
@@ -9,7 +10,7 @@ export async function getStaticPaths() {
   const entries = await getAllBlogEntries();
 
   return entries.map((entry) => ({
-    params: { slug: entry.slug },
+    params: { slug: entry.id },
   }));
 }
 
@@ -21,7 +22,7 @@ if (!entry || !post) {
   return Astro.redirect("/blog");
 }
 
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 
 const pageTitle = `${post.title} | Piyushh Bhutoria`;
 const pageDescription = post.excerpt;
