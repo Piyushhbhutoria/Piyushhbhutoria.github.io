@@ -40,9 +40,9 @@ projects:
     file: "pdf-tool.png"
     links:
       - type: "demo"
-        url: "https://piyushhbhutoria.github.io/pfd-tool/"
+        url: "https://piyushhbhutoria.github.io/pdf-tool/"
       - type: "github"
-        url: "https://github.com/Piyushhbhutoria/pfd-tool"
+        url: "https://github.com/Piyushhbhutoria/pdf-tool"
   - title: "CSV diff"
     description: "CSV diff tool for comparing two CSV files"
     tech: "Lovable"
