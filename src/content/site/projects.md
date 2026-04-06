@@ -8,7 +8,7 @@ projects:
     file: "house-help.png"
     links:
       - type: "demo"
-        url: "https://househelper.lovable.app/"
+        url: "https://loopback-labs.github.io/househelp-page/"
   - title: "Honest Box"
     description: "An Anonymous Feedback Platform"
     tech: "Lovable, Cursor, Supabase"
