@@ -1,7 +1,8 @@
 import heroBg from "@/assets/hero-bg.jpg";
 import { Button } from "@/components/ui/button";
+import { Github, Linkedin } from "@/components/icons/brand";
 import type { HeroProps } from "@/types";
-import { ArrowRight, BookOpen, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowRight, BookOpen, Mail } from "lucide-react";
 
 const Hero = ({ title, name, description, cta, social }: HeroProps) => {
   return (

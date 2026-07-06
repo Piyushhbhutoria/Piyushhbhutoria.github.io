@@ -2,12 +2,10 @@
 root: false
 targets:
   - '*'
-description: Project overview and general development guidelines
 globs:
   - '**/*'
-cursor:
-  description: Project overview and general development guidelines
-  globs:
+claudecode:
+  paths:
     - '**/*'
 ---
 # Project Overview

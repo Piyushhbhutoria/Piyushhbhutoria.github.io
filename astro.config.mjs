@@ -25,6 +25,11 @@ export default defineConfig({
     assets: '_assets',
   },
 
+  image: {
+    // Trusted local asset (src/assets/projects/csv-diff.svg) rasterized to webp at build time.
+    dangerouslyProcessSVG: true,
+  },
+
   vite: {
     plugins: [/** @type {any} */ (tailwindcss())],
     resolve: {
@@ -81,7 +86,6 @@ export default defineConfig({
         treeshake: {
           moduleSideEffects: false,
           propertyReadSideEffects: false,
-          tryCatchDeoptimization: false,
         },
       },
       chunkSizeWarningLimit: 1000,

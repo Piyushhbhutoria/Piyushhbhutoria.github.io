@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
+import { Github } from "@/components/icons/brand";
 import { getThemeColorByIndex } from "@/lib/utils";
 import type { OpenSourceProjectsData } from "@/types";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 
 const OpenSourceProjects = ({ title, subtitle, openSourceProjects }: OpenSourceProjectsData) => {
   return (

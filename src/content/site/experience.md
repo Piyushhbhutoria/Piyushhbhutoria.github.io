@@ -1,6 +1,13 @@
 ---
 title: "Experience"
 experiences:
+  - company: "Maxhome AI"
+    role: "Senior Full Stack Engineer"
+    duration: "May 2026 - Present"
+    location: "Bangalore, India"
+    description:
+      - "Working on building a scalable forms modules"
+    techStack: "Node.js, React, MongoDB, Redis"
   - company: "Easyship"
     role: "Backend Engineer"
     duration: "Jul 2025 - Jan 2026"

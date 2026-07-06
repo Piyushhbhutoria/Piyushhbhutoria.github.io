@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
+import { Github, Linkedin } from "@/components/icons/brand";
 import type { ContactIconType, ContactProps, SocialIconType } from "@/types";
-import { BookOpen, Github, Linkedin, Mail, MapPin, Phone } from "lucide-react";
+import { BookOpen, Mail, MapPin, Phone } from "lucide-react";
 
 const getContactIcon = (iconType: ContactIconType, className: string) => {
   switch (iconType) {
