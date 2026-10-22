@@ -1,10 +1,3 @@
----
-root: true
-targets:
-  - '*'
-globs:
-  - '**/*'
----
 # CLAUDE.md
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
@@ -12,7 +5,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Project Context
 
 - **What**: Piyushh Bhutoria's personal portfolio site, deployed statically to GitHub Pages at `https://piyushhbhutoria.github.io`.
-- **Stack**: Astro 6, React 19 (islands), MDX, Tailwind CSS v4 (via `@tailwindcss/vite`), Radix UI, Lucide React, TypeScript.
+- **Stack**: Astro 7, React 19 (islands), MDX, Tailwind CSS v4 (via `@tailwindcss/vite`), Radix UI, Lucide React, TypeScript.
 - **Path alias**: `@/` → `src/` (configured in both `astro.config.mjs` vite resolve alias and `tsconfig.json`).
 
 ## Commands
@@ -44,7 +37,7 @@ Because the whole page hydrates as one island (`client:load` on `App`), adding/r
 
 Two collections, both loaded via `astro/loaders` `glob()`:
 - **`site`** — one markdown file per section under `src/content/site/*.md`. Schema is an open passthrough (`z.object({}).passthrough()`) since each file's frontmatter shape is completely different (matches the corresponding `*Data` interface in `src/types/index.ts`). To change what a section renders, edit its content file's frontmatter, not the component, when possible.
-- **`blog`** — structured, schema-validated posts under `src/content/blog/*.mdx` (Medium/LinkedIn syndication). Files under any `_templates/` path are excluded from the collection glob pattern.
+- **`blog`** — structured, schema-validated posts under `src/content/blog/*.mdx` (Medium/LinkedIn syndication). Both collections' glob patterns skip any underscore-prefixed file or directory (e.g. `_templates/`, `_draft.mdx`).
 
 ### Blog
 
@@ -62,6 +55,6 @@ Two collections, both loaded via `astro/loaders` `glob()`:
 - `rollup-plugin-visualizer` always emits `dist/stats.html` on build (`npm run build:analyze` just points you at it).
 - `site:` in the config is hardcoded to `https://piyushhbhutoria.github.io`; CI also passes `PUBLIC_SITE_URL` from the Pages step but the config doesn't currently read it.
 
-## Rulesync-managed files — do not hand-edit
+## Code style
 
-`AGENTS.md` and everything under `.claude/rules/`, `.claude/commands/`, `.claude/subagents/`, `.claude/skills/`, `.mcp.json` are generated output from [rulesync](https://github.com/dyoshikawa/rulesync), configured by `rulesync.jsonc`. The source of truth is `.rulesync/` (e.g. `.rulesync/rules/overview.md`). Edit files there and regenerate with the `rulesync` CLI rather than editing the generated files directly, or changes will be silently overwritten.
+2-space indentation, double quotes, trailing commas in multi-line objects/arrays.
